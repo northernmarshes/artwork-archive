@@ -1,0 +1,63 @@
+# --- Python standard ---
+__pycache__/
+*.py[cod]
+*$py.class
+
+# --- Virtual environments ---
+.venv/
+venv/
+env/
+ENV/
+
+# --- IDEs & editors ---
+.idea/
+*.swp
+*.swo
+
+# --- OS files ---
+.DS_Store
+Thumbs.db
+
+# --- Logs & temp files ---
+*.log
+*.tmp
+*.bak
+
+# --- Databases ---
+*.db
+*.sqlite3
+*.sqlite
+
+# --- Build & dist ---
+build/
+dist/
+*.egg-info/
+.eggs/
+*.spec
+
+# --- PyInstaller / cx_Freeze ---
+/*.manifest
+/*.spec
+/build/
+/dist/
+
+# --- PySide6 / Qt related ---
+# Compiled UI and resource files
+*_ui.py
+*_rc.py
+
+# Generated translations
+*.qm
+
+# Caches
+.qt_cache/
+.qtc_resources/
+.qtc_settings/
+
+# --- Jupyter notebooks checkpoints ---
+.ipynb_checkpoints/
+
+# --- Local config files ---
+config.json
+settings.json
+.env
