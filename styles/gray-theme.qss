@@ -1,0 +1,27 @@
+    QMainWindow {
+        background-color: gray;
+        font-size: 16px;
+    }
+    QMenuBar {
+        background-color: gray;
+        font-size: 16px;
+        color: white;
+    }
+    QPushButton {
+        background-color: dark gray;
+        color: white;
+        border-radius: 5px;
+        padding: 10px;
+        font-size: 16px;
+    }
+    QPushButton:hover {
+        background-color: #14a085;
+    }
+    QTableWidget {
+    background-color: #808080;
+    }
+    QLabel {
+        color: white;
+        background-color: gray;
+        font-size: 16px;
+    }

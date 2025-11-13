@@ -77,7 +77,7 @@ class Archive(QWidget):
         h_layout07.addWidget(button_update_data)
 
         # Grouping elements
-        add_form = QGroupBox("Add an artwork")
+        add_form = QGroupBox()
 
         # Layout of the form
         form_layout = QVBoxLayout()
@@ -92,7 +92,7 @@ class Archive(QWidget):
 
         # QTable
         self.table = QTableWidget(self)
-        # self.table.setMaximumWidth(800)
+        # self.table.setMaximumWidth(1200)
         self.table.setColumnCount(6)
         self.table.setColumnWidth(0, 150)
         self.table.setColumnWidth(1, 150)
