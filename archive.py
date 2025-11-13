@@ -1,4 +1,5 @@
 import sqlite3
+from pathlib import Path
 from PySide6.QtWidgets import (
     QGroupBox,
     QHBoxLayout,
@@ -18,6 +19,36 @@ class Archive(QWidget):
         self.setWindowTitle("artwork-archive")
         self.setGeometry(100, 100, 500, 100)
 
+        # Initializing database
+        datafile = Path("database/artworks.db")
+        if datafile.exists():
+            print("Database exists - did nothing")
+            pass
+        else:
+            self.con = sqlite3.connect("database/artworks.db")
+            self.cur = self.con.cursor()
+            self.cur.execute(
+                "CREATE TABLE artworks(author, title, size, medium, year, thumbnail)"
+            )
+            print("created database")
+
+        # Table section
+        self.table = QTableWidget(self)
+        # self.table.setMaximumWidth(1200)
+        self.table.setColumnCount(6)
+        self.table.setColumnWidth(0, 150)
+        self.table.setColumnWidth(1, 150)
+        self.table.setColumnWidth(2, 150)
+        self.table.setColumnWidth(3, 150)
+        self.table.setColumnWidth(4, 150)
+        self.table.setColumnWidth(5, 150)
+        self.table.setColumnWidth(6, 150)
+        self.table.setHorizontalHeaderLabels(
+            ["Author", "Title", "Size", "Medium", "Year", "Photo"]
+        )
+
+        # Input section
+
         author_label = QLabel("Author")
         title_label = QLabel("Title")
         size_label = QLabel("Size")
@@ -33,13 +64,11 @@ class Archive(QWidget):
         self.year_line_edit = QLineEdit()
         self.thumbnail_line_edit = QLineEdit()
 
-        # QPushButtons
-
         button_add_data = QPushButton("Add an artwork")
-        button_add_data.clicked.connect(self.add_data)
+        # button_add_data.clicked.connect(self.add_data)
 
         button_update_data = QPushButton("Update")
-        button_update_data.clicked.connect(self.update_data)
+        # button_update_data.clicked.connect(self.update_data)
 
         # Layout - Author
         h_layout01 = QHBoxLayout()
@@ -90,66 +119,51 @@ class Archive(QWidget):
         form_layout.addLayout((h_layout07))
         add_form.setLayout(form_layout)
 
-        # QTable
-        self.table = QTableWidget(self)
-        # self.table.setMaximumWidth(1200)
-        self.table.setColumnCount(6)
-        self.table.setColumnWidth(0, 150)
-        self.table.setColumnWidth(1, 150)
-        self.table.setColumnWidth(2, 150)
-        self.table.setColumnWidth(3, 150)
-        self.table.setColumnWidth(4, 150)
-        self.table.setColumnWidth(5, 150)
-        self.table.setColumnWidth(6, 150)
-        self.table.setHorizontalHeaderLabels(
-            ["Author", "Title", "Size", "Medium", "Year", "Photo"]
-        )
         # Displaying
         layout = QVBoxLayout()
         layout.addWidget(self.table)
         layout.addWidget(add_form)
         self.setLayout(layout)
 
-    def create_connection(self):
-        """Creating SQL connection"""
-        self.connection = sqlite3.connect("artworks.db")
+    # def create_connection(self):
+    #     pass
+    #
+    # def update_data(self):
+    #     pass
+    #
+    # def add_data(self):
+    # self.cursor = self.create_connection().cursor()
+    #
+    # self.new_artwork = [
+    #     self.author_line_edit.text(),
+    #     self.title_line_edit.text(),
+    #     self.size_line_edit.text(),
+    #     self.medium_line_edit.text(),
+    #     self.year_line_edit.text(),
+    #     self.thumbnail_line_edit.text(),
+    # ]
+    # # Add artwork
+    # self.cursor.execute(
+    #     "Insert into artwork_list values (?,?,?,?,?,?)", self.new_artwork
+    # )
+    # # Clear Edits
+    # self.author_line_edit.clear()
+    # self.title_line_edit.clear()
+    # self.size_line_edit.clear()
+    # self.medium_line_edit.clear()
+    # self.year_line_edit.clear()
+    # self.thumbnail_line_edit.clear()
+    # self.connection.commit()
+    # self.connection.close
 
-    def update_data(self):
-        pass
+    # def load_data(self):
+    #     pass
 
-    def add_data(self):
-        self.cursor = self.create_connection().cursor()
-
-        self.new_artwork = [
-            self.author_line_edit.text(),
-            self.title_line_edit.text(),
-            self.size_line_edit.text(),
-            self.medium_line_edit.text(),
-            self.year_line_edit.text(),
-            self.thumbnail_line_edit.text(),
-        ]
-        # Add artwork
-        self.cursor.execute(
-            "Insert into artwork_list values (?,?,?,?,?,?)", self.new_artwork
-        )
-        # Clear Edits
-        self.author_line_edit.clear()
-        self.title_line_edit.clear()
-        self.size_line_edit.clear()
-        self.medium_line_edit.clear()
-        self.year_line_edit.clear()
-        self.thumbnail_line_edit.clear()
-        self.connection.commit()
-        self.connection.close
-
-    def load_data(self):
-        pass
-
-    def call_data(self):
-        pass
-
-    def delete_data(self):
-        pass
+    # def call_data(self):
+    #     pass
+    #
+    # def delete_data(self):
+    #     pass
 
 
 class MainWindow(QMainWindow):
