@@ -1,14 +1,18 @@
 import sqlite3
 from pathlib import Path
+from PySide6.QtCore import QSortFilterProxyModel, Qt
+from PySide6.QtGui import QStandardItem, QStandardItemModel
+
 from PySide6.QtWidgets import (
     QGroupBox,
     QHBoxLayout,
+    QHeaderView,
     QLabel,
     QMainWindow,
     QLineEdit,
     QPushButton,
-    QTableWidget,
-    QTableWidgetItem,
+    QSizePolicy,
+    QTableView,
     QVBoxLayout,
     QWidget,
 )
@@ -20,14 +24,17 @@ class Archive(QWidget):
         self.setWindowTitle("artwork-archive")
         self.setGeometry(100, 100, 500, 100)
 
+        # ---------------------------------
         # - Initializing Database Section -
-        datapath = Path("database/artworks.db")
-        if datapath.exists():
-            self.con = sqlite3.connect(datapath)
+        # ---------------------------------
+
+        self.datapath = Path("database/artworks.db")
+        if self.datapath.exists():
+            self.con = sqlite3.connect(self.datapath)
             self.cur = self.con.cursor()
             print("Database exists - connected to database")
         else:
-            self.con = sqlite3.connect(datapath)
+            self.con = sqlite3.connect(self.datapath)
             self.cur = self.con.cursor()
             self.cur.execute(
                 "CREATE TABLE ARTWORKS(author, title, size, medium, year, thumbnail)"
@@ -39,26 +46,61 @@ class Archive(QWidget):
             ]
             self.cur.executemany("INSERT INTO ARTWORKS VALUES(?, ?, ?, ?, ?, ?)", data)
             self.con.commit()
-            print("Created sample raw")
+            print("Created sample row")
+            self.con.close()
 
-        # -------- Table Section --------
-        self.table = QTableWidget(self)
-        # self.table.setMaximumWidth(1200)
-        self.table.setColumnCount(6)
-        self.table.setColumnWidth(0, 150)
-        self.table.setColumnWidth(1, 150)
-        self.table.setColumnWidth(2, 150)
-        self.table.setColumnWidth(3, 150)
-        self.table.setColumnWidth(4, 150)
-        self.table.setColumnWidth(5, 150)
-        self.table.setColumnWidth(6, 150)
-        self.table.setHorizontalHeaderLabels(
-            ["Author", "Title", "Size", "Medium", "Year", "Photo"]
+        # - Uploading database -
+        self.con = sqlite3.connect(self.datapath)
+        cur = self.con.cursor()
+        cur.execute("SELECT * FROM ARTWORKS")
+        self.rows = cur.fetchall()
+        self.headers = [d[0] for d in cur.description]
+        self.con.close()
+        print(self.rows)
+        print(self.headers)
+
+        # - Creating a model -
+        self.model = QStandardItemModel()
+        self.model.setHorizontalHeaderLabels(self.headers)
+
+        for row in self.rows:
+            items = [QStandardItem(str(col)) for col in row]
+            self.model.appendRow(items)
+
+        # - Creating a QTableView -
+        self.table_view = QTableView()
+        self.table_view.setModel(self.model)
+
+        # - Headers -text
+        self.horizontal_header = self.table_view.horizontalHeader()
+        self.vertical_header = self.table_view.verticalHeader()
+        self.horizontal_header.setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
+        self.vertical_header.setSectionResizeMode(
+            QHeaderView.ResizeMode.ResizeToContents
         )
+        self.horizontal_header.setStretchLastSection(True)
 
-        self.tableUpdate()
+        self.main_layout = QHBoxLayout()
+        size = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred)
 
-        # -------- Input Section --------
+        size.setHorizontalStretch(1)
+        self.table_view.setSizePolicy(size)
+        self.main_layout.addWidget(self.table_view)
+
+        # ---------------------------------
+        # ---------Filter Section----------
+        # ---------------------------------
+        self.proxy_model = QSortFilterProxyModel()
+        self.proxy_model.setFilterKeyColumn(-1)  # searching all columns
+        self.proxy_model.setSourceModel(self.model)
+        self.proxy_model.sort(0, Qt.SortOrder.AscendingOrder)
+        self.table_view.setModel(self.proxy_model)
+        self.searchbar = QLineEdit()
+        self.searchbar.textChanged.connect(self.proxy_model.setFilterFixedString)
+
+        # ---------------------------------
+        # --------- Input Section ---------
+        # ---------------------------------
 
         # Labels
         author_label = QLabel("Author")
@@ -78,7 +120,7 @@ class Archive(QWidget):
 
         # Bottom Buttons
         button_update_data = QPushButton("Update")
-        button_update_data.clicked.connect(self.tableUpdate)
+        # button_update_data.clicked.connect(self.tableUpdate)
         button_addArtwork = QPushButton("Add an artwork")
         button_addArtwork.clicked.connect(self.addArtwork)
 
@@ -133,25 +175,22 @@ class Archive(QWidget):
 
         # Displaying
         layout = QVBoxLayout()
-        layout.addWidget(self.table)
+        layout.addWidget(self.searchbar)
+        layout.addWidget(self.table_view)
         layout.addWidget(self.add_form)
         self.setLayout(layout)
 
-    # --- Update QTable ---
-    def tableUpdate(self):
-        self.cur.execute("SELECT * FROM ARTWORKS")
-        data = self.cur.fetchall()
-        self.table.setRowCount(0)  # resetowanie tabeli
-        for row, item in enumerate(data):
-            self.table.insertRow(row)
-            self.table.setItem(row, 0, QTableWidgetItem(item[0]))
-            self.table.setItem(row, 1, QTableWidgetItem(item[1]))
-            self.table.setItem(row, 2, QTableWidgetItem(item[2]))
-            self.table.setItem(row, 3, QTableWidgetItem(item[3]))
-            self.table.setItem(row, 4, QTableWidgetItem(item[4]))
-            self.table.setItem(row, 5, QTableWidgetItem(item[5]))
+    # # --- Update QTable ---
+    # def tableUpdate(self):
+    #     self.cur.execute("SELECT * FROM ARTWORKS")
+    #     data = self.cur.fetchall()
+    #     self.model.clear()  # resetowanie modelu
+    #
+    # - Uploading database -
 
     def addArtwork(self):
+        self.con = sqlite3.connect(self.datapath)
+        self.cur = self.con.cursor()
         self.new_artwork = [
             self.author_line_edit.text(),
             self.title_line_edit.text(),
@@ -166,13 +205,20 @@ class Archive(QWidget):
         )
         self.con.commit()
 
+        # Adding new row without updating
+        row_items = [QStandardItem(str(item)) for item in self.new_artwork]
+        self.model.appendRow(row_items)
+
+        # Scrolling to bottom of the list
+        self.table_view.scrollToBottom()
+
         self.author_line_edit.clear()
         self.title_line_edit.clear()
         self.size_line_edit.clear()
         self.medium_line_edit.clear()
         self.year_line_edit.clear()
         self.thumbnail_line_edit.clear()
-        self.tableUpdate()
+
         print("New artwork added")
 
 
