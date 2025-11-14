@@ -8,6 +8,7 @@ from PySide6.QtWidgets import (
     QLineEdit,
     QPushButton,
     QTableWidget,
+    QTableWidgetItem,
     QVBoxLayout,
     QWidget,
 )
@@ -19,20 +20,28 @@ class Archive(QWidget):
         self.setWindowTitle("artwork-archive")
         self.setGeometry(100, 100, 500, 100)
 
-        # Initializing database
-        datafile = Path("database/artworks.db")
-        if datafile.exists():
-            print("Database exists - did nothing")
-            pass
+        # - Initializing Database Section -
+        datapath = Path("database/artworks.db")
+        if datapath.exists():
+            self.con = sqlite3.connect(datapath)
+            self.cur = self.con.cursor()
+            print("Database exists - connected to database")
         else:
-            self.con = sqlite3.connect("database/artworks.db")
+            self.con = sqlite3.connect(datapath)
             self.cur = self.con.cursor()
             self.cur.execute(
-                "CREATE TABLE artworks(author, title, size, medium, year, thumbnail)"
+                "CREATE TABLE ARTWORKS(author, title, size, medium, year, thumbnail)"
             )
-            print("created database")
+            print("Created database")
 
-        # Table section
+            data = [
+                ("Edna Baud", "Throne of Dust", "200cm", "Steel", "2025", "thumb.jpg"),
+            ]
+            self.cur.executemany("INSERT INTO ARTWORKS VALUES(?, ?, ?, ?, ?, ?)", data)
+            self.con.commit()
+            print("Created sample raw")
+
+        # -------- Table Section --------
         self.table = QTableWidget(self)
         # self.table.setMaximumWidth(1200)
         self.table.setColumnCount(6)
@@ -47,8 +56,11 @@ class Archive(QWidget):
             ["Author", "Title", "Size", "Medium", "Year", "Photo"]
         )
 
-        # Input section
+        self.tableUpdate()
 
+        # -------- Input Section --------
+
+        # Labels
         author_label = QLabel("Author")
         title_label = QLabel("Title")
         size_label = QLabel("Size")
@@ -64,11 +76,11 @@ class Archive(QWidget):
         self.year_line_edit = QLineEdit()
         self.thumbnail_line_edit = QLineEdit()
 
-        button_add_data = QPushButton("Add an artwork")
-        # button_add_data.clicked.connect(self.add_data)
-
+        # Bottom Buttons
         button_update_data = QPushButton("Update")
-        # button_update_data.clicked.connect(self.update_data)
+        button_update_data.clicked.connect(self.tableUpdate)
+        button_addArtwork = QPushButton("Add an artwork")
+        button_addArtwork.clicked.connect(self.addArtwork)
 
         # Layout - Author
         h_layout01 = QHBoxLayout()
@@ -102,11 +114,11 @@ class Archive(QWidget):
 
         # Layout - Thumbnail
         h_layout07 = QHBoxLayout()
-        h_layout07.addWidget(button_add_data)
         h_layout07.addWidget(button_update_data)
+        h_layout07.addWidget(button_addArtwork)
 
         # Grouping elements
-        add_form = QGroupBox()
+        self.add_form = QGroupBox()
 
         # Layout of the form
         form_layout = QVBoxLayout()
@@ -117,53 +129,51 @@ class Archive(QWidget):
         form_layout.addLayout((h_layout05))
         form_layout.addLayout((h_layout06))
         form_layout.addLayout((h_layout07))
-        add_form.setLayout(form_layout)
+        self.add_form.setLayout(form_layout)
 
         # Displaying
         layout = QVBoxLayout()
         layout.addWidget(self.table)
-        layout.addWidget(add_form)
+        layout.addWidget(self.add_form)
         self.setLayout(layout)
 
-    # def create_connection(self):
-    #     pass
-    #
-    # def update_data(self):
-    #     pass
-    #
-    # def add_data(self):
-    # self.cursor = self.create_connection().cursor()
-    #
-    # self.new_artwork = [
-    #     self.author_line_edit.text(),
-    #     self.title_line_edit.text(),
-    #     self.size_line_edit.text(),
-    #     self.medium_line_edit.text(),
-    #     self.year_line_edit.text(),
-    #     self.thumbnail_line_edit.text(),
-    # ]
-    # # Add artwork
-    # self.cursor.execute(
-    #     "Insert into artwork_list values (?,?,?,?,?,?)", self.new_artwork
-    # )
-    # # Clear Edits
-    # self.author_line_edit.clear()
-    # self.title_line_edit.clear()
-    # self.size_line_edit.clear()
-    # self.medium_line_edit.clear()
-    # self.year_line_edit.clear()
-    # self.thumbnail_line_edit.clear()
-    # self.connection.commit()
-    # self.connection.close
+    # --- Update QTable ---
+    def tableUpdate(self):
+        self.cur.execute("SELECT * FROM ARTWORKS")
+        data = self.cur.fetchall()
+        self.table.setRowCount(0)  # resetowanie tabeli
+        for row, item in enumerate(data):
+            self.table.insertRow(row)
+            self.table.setItem(row, 0, QTableWidgetItem(item[0]))
+            self.table.setItem(row, 1, QTableWidgetItem(item[1]))
+            self.table.setItem(row, 2, QTableWidgetItem(item[2]))
+            self.table.setItem(row, 3, QTableWidgetItem(item[3]))
+            self.table.setItem(row, 4, QTableWidgetItem(item[4]))
+            self.table.setItem(row, 5, QTableWidgetItem(item[5]))
 
-    # def load_data(self):
-    #     pass
+    def addArtwork(self):
+        self.new_artwork = [
+            self.author_line_edit.text(),
+            self.title_line_edit.text(),
+            self.size_line_edit.text(),
+            self.medium_line_edit.text(),
+            self.year_line_edit.text(),
+            self.thumbnail_line_edit.text(),
+        ]
+        print(self.new_artwork)
+        self.cur.execute(
+            "INSERT INTO ARTWORKS VALUES(?, ?, ?, ?, ?, ?)", self.new_artwork
+        )
+        self.con.commit()
 
-    # def call_data(self):
-    #     pass
-    #
-    # def delete_data(self):
-    #     pass
+        self.author_line_edit.clear()
+        self.title_line_edit.clear()
+        self.size_line_edit.clear()
+        self.medium_line_edit.clear()
+        self.year_line_edit.clear()
+        self.thumbnail_line_edit.clear()
+        self.tableUpdate()
+        print("New artwork added")
 
 
 class MainWindow(QMainWindow):
@@ -177,6 +187,8 @@ class MainWindow(QMainWindow):
     def menu(self):
         menubar = self.menuBar()
         fileMenu = menubar.addMenu("File")
+        pdfAction = fileMenu.addAction("Export pdf list")
+        backupAction = fileMenu.addAction("Export backup file")
         exitAction = fileMenu.addAction("Exit")
         exitAction.triggered.connect(self.close)
         editMenu = menubar.addMenu("Edit")
