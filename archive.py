@@ -9,6 +9,7 @@ from PySide6.QtWidgets import (
     QHeaderView,
     QLabel,
     QMainWindow,
+    QMenu,
     QLineEdit,
     QPushButton,
     QSizePolicy,
@@ -86,6 +87,29 @@ class Archive(QWidget):
         size.setHorizontalStretch(1)
         self.table_view.setSizePolicy(size)
         self.main_layout.addWidget(self.table_view)
+
+        # ------ Context Menu ------
+
+        # self.table_view.setContextMenuPolicy(Qt.CustomContextMenu)
+        # self.table_view.customContextMenuRequested.connect(self.showContextMenu)
+
+        # self.table_view.context_menu = QMenu(self)
+        # action1 = self.table_view.context_menu.addAction("action1")
+
+        # def contextMenuEvent(self, event):
+        # self.table_view.context_menu.exec(event.globalPos())
+
+        # def contextMenuEvent(self, event):
+        #     """Custom context menu logic"""
+        #     if self.table_view.underMouse():
+        #         self.contextMenu = QMenu(self)
+        #
+        #
+        #
+        #         deleteAction = QAction("Delete", self)
+        #         self.contextMenu.addAction(deleteAction)
+        #         deleteAction.triggered.connect(self.deleteArtwork)
+        #         self.contextMenu.popup(QCursor.pos())
 
         # ---------------------------------
         # ---------Filter Section----------
@@ -180,15 +204,8 @@ class Archive(QWidget):
         layout.addWidget(self.add_form)
         self.setLayout(layout)
 
-    # # --- Update QTable ---
-    # def tableUpdate(self):
-    #     self.cur.execute("SELECT * FROM ARTWORKS")
-    #     data = self.cur.fetchall()
-    #     self.model.clear()  # resetowanie modelu
-    #
-    # - Uploading database -
-
     def addArtwork(self):
+        """A method to add an artwork to the base"""
         self.con = sqlite3.connect(self.datapath)
         self.cur = self.con.cursor()
         self.new_artwork = [
@@ -220,6 +237,13 @@ class Archive(QWidget):
         self.thumbnail_line_edit.clear()
 
         print("New artwork added")
+
+    # def deleteArtwork(self):
+    #     """A method that deletes an artwork"""
+    #     self.con = sqlite3.connect(self.datapath)
+    #     self.cur = self.con.cursor()
+    #     self.model.removeRow(self.clicked_row)
+    #     self.table_view.scrollToBottom()
 
 
 class MainWindow(QMainWindow):
