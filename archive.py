@@ -1,7 +1,13 @@
 import sqlite3
 from pathlib import Path
 from PySide6.QtCore import QSortFilterProxyModel, Qt
-from PySide6.QtGui import QStandardItem, QStandardItemModel
+from PySide6.QtGui import (
+    QAction,
+    QStandardItem,
+    QStandardItemModel,
+    QShortcut,
+    QKeySequence,
+)
 
 from PySide6.QtWidgets import (
     QGroupBox,
@@ -57,8 +63,6 @@ class Archive(QWidget):
         self.rows = cur.fetchall()
         self.headers = [d[0] for d in cur.description]
         self.con.close()
-        print(self.rows)
-        print(self.headers)
 
         # - Creating a model -
         self.model = QStandardItemModel()
@@ -71,6 +75,9 @@ class Archive(QWidget):
         # - Creating a QTableView -
         self.table_view = QTableView()
         self.table_view.setModel(self.model)
+        self.table_view.setSortingEnabled(True)
+        self.table_view.setCornerButtonEnabled(False)
+        self.table_view.setSelectionBehavior(QTableView.SelectionBehavior.SelectRows)
 
         # - Headers -text
         self.horizontal_header = self.table_view.horizontalHeader()
@@ -89,27 +96,24 @@ class Archive(QWidget):
         self.main_layout.addWidget(self.table_view)
 
         # ------ Context Menu ------
-
-        # self.table_view.setContextMenuPolicy(Qt.CustomContextMenu)
-        # self.table_view.customContextMenuRequested.connect(self.showContextMenu)
-
-        # self.table_view.context_menu = QMenu(self)
-        # action1 = self.table_view.context_menu.addAction("action1")
-
-        # def contextMenuEvent(self, event):
-        # self.table_view.context_menu.exec(event.globalPos())
-
-        # def contextMenuEvent(self, event):
-        #     """Custom context menu logic"""
-        #     if self.table_view.underMouse():
-        #         self.contextMenu = QMenu(self)
         #
+        #     self.table_view.setContextMenuPolicy(Qt.ContextMenuPolicy.CustomContextMenu)
+        #     self.table_view.customContextMenuRequested.connect(self.show_context_menu)
         #
+        # def show_context_menu(self, position):
+        #     index = self.table_view.indexAt(position)
         #
-        #         deleteAction = QAction("Delete", self)
-        #         self.contextMenu.addAction(deleteAction)
-        #         deleteAction.triggered.connect(self.deleteArtwork)
-        #         self.contextMenu.popup(QCursor.pos())
+        #     if not index.isValid():
+        #         return
+        #
+        #     self.clicked_row = index.row()
+        #
+        #     menu = QMenu(self.table_view)
+        #
+        #     edit_action = QAction("Edit", self)
+        #     edit_action.triggered.connect(self.deleteArtwork)
+        #     menu.addAction(edit_action)
+        #     menu.exec(self.table_view.viewport().mapToGlobal(position))
 
         # ---------------------------------
         # ---------Filter Section----------
@@ -143,8 +147,8 @@ class Archive(QWidget):
         self.thumbnail_line_edit = QLineEdit()
 
         # Bottom Buttons
-        button_update_data = QPushButton("Update")
-        # button_update_data.clicked.connect(self.tableUpdate)
+        button_update_data = QPushButton("Remove artwork")
+        button_update_data.clicked.connect(self.deleteArtwork)
         button_addArtwork = QPushButton("Add an artwork")
         button_addArtwork.clicked.connect(self.addArtwork)
 
@@ -202,7 +206,19 @@ class Archive(QWidget):
         layout.addWidget(self.searchbar)
         layout.addWidget(self.table_view)
         layout.addWidget(self.add_form)
+        layout.setStretch(1, 4)
+        layout.setStretch(2, 1)
+        layout.setStretch(3, 1)
         self.setLayout(layout)
+
+        # ---------------------------------
+        # ----------Keybindings------------
+        # ---------------------------------
+        # self.shortcut_delete = QShortcut(QKeySequence("Delete"), self.table_view)
+        # self.shortcut_delete.activated.connect(self.deleteArtwork)
+        # self.shortcut_save = QShortcut(QKeySequence("Ctrl+S"), self)
+        # self.shortcut_save.activated.connect(self.saveArchive)
+        # Stronger binding in the menu parametres
 
     def addArtwork(self):
         """A method to add an artwork to the base"""
@@ -216,7 +232,6 @@ class Archive(QWidget):
             self.year_line_edit.text(),
             self.thumbnail_line_edit.text(),
         ]
-        print(self.new_artwork)
         self.cur.execute(
             "INSERT INTO ARTWORKS VALUES(?, ?, ?, ?, ?, ?)", self.new_artwork
         )
@@ -236,30 +251,63 @@ class Archive(QWidget):
         self.year_line_edit.clear()
         self.thumbnail_line_edit.clear()
 
-        print("New artwork added")
+        print("New Artwork Added")
 
-    # def deleteArtwork(self):
-    #     """A method that deletes an artwork"""
-    #     self.con = sqlite3.connect(self.datapath)
-    #     self.cur = self.con.cursor()
-    #     self.model.removeRow(self.clicked_row)
-    #     self.table_view.scrollToBottom()
+    def deleteArtwork(self):
+        """A method that deletes an artwork"""
+        self.con = sqlite3.connect(self.datapath)
+        self.cur = self.con.cursor()
+        indexes = self.table_view.selectionModel().selectedRows()
+        index = indexes[0]
+        source_index = self.proxy_model.mapToSource(index)
+        row = source_index.row()
+
+        self.model.removeRow(row)
+        self.table_view.scrollToBottom()
+
+    def saveArchive(self):
+        """A method to save changes to database"""
+        con = sqlite3.connect(self.datapath)
+        cur = con.cursor()
+
+        cur.execute("DELETE FROM ARTWORKS")
+        for row in range(self.model.rowCount()):
+            record = []
+            for col in range(self.model.columnCount()):
+                item = self.model.item(row, col)
+                record.append(item.text() if item else None)
+
+            cur.execute(
+                "INSERT INTO ARTWORKS (author, title, size, medium, year, thumbnail) "
+                "VALUES (?, ?, ?, ?, ?, ?)",
+                record,
+            )
+        con.commit()
+        con.close()
+        print("Updated")
 
 
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
 
-        Widget = Archive()
-        self.setCentralWidget(Widget)
+        self.Widget = Archive()
+        self.setCentralWidget(self.Widget)
         self.menu()
 
     def menu(self):
         menubar = self.menuBar()
         fileMenu = menubar.addMenu("File")
-        pdfAction = fileMenu.addAction("Export pdf list")
-        backupAction = fileMenu.addAction("Export backup file")
-        exitAction = fileMenu.addAction("Exit")
+        saveArchive = fileMenu.addAction("Save Archive", "CTRL+S")
+        saveArchive.triggered.connect(self.Widget.saveArchive)
+        pdfAction = fileMenu.addAction("Export PDF list")
+        backupAction = fileMenu.addAction("Export a Backup File")
+        exitAction = fileMenu.addAction("Exit and Save")
+        exitAction.triggered.connect(self.Widget.saveArchive)
         exitAction.triggered.connect(self.close)
         editMenu = menubar.addMenu("Edit")
+        addRow = editMenu.addAction("Add an Artwork", "Return")
+        addRow.triggered.connect(self.Widget.addArtwork)
+        deleteRow = editMenu.addAction("Delete Row", "DEL")
+        deleteRow.triggered.connect(self.Widget.deleteArtwork)
         aboutMenu = menubar.addMenu("About")

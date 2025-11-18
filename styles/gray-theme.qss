@@ -22,8 +22,10 @@
     QPushButton:hover {
         background-color: #14a085;
     }
-    QTableWidget {
+    QTableView {
         background-color: #808080;
+        font-size: 16;
+        text-align: center;
     }
     QLabel {
         color: white;
