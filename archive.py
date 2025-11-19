@@ -1,6 +1,6 @@
 import sqlite3
 from pathlib import Path
-from PySide6.QtCore import QSortFilterProxyModel, Qt
+from PySide6.QtCore import QFileDevice, QSortFilterProxyModel, Qt
 from PySide6.QtGui import (
     QAction,
     QStandardItem,
@@ -10,6 +10,7 @@ from PySide6.QtGui import (
 )
 
 from PySide6.QtWidgets import (
+    QFileDialog,
     QGroupBox,
     QHBoxLayout,
     QHeaderView,
@@ -122,6 +123,8 @@ class Archive(QWidget):
         self.proxy_model.setFilterKeyColumn(-1)  # searching all columns
         self.proxy_model.setSourceModel(self.model)
         self.proxy_model.sort(0, Qt.SortOrder.AscendingOrder)
+        self.proxy_model.setSortCaseSensitivity(Qt.CaseSensitivity.CaseInsensitive)
+        self.proxy_model.setFilterCaseSensitivity(Qt.CaseSensitivity.CaseInsensitive)
         self.table_view.setModel(self.proxy_model)
         self.searchbar = QLineEdit()
         self.searchbar.textChanged.connect(self.proxy_model.setFilterFixedString)
@@ -136,7 +139,8 @@ class Archive(QWidget):
         size_label = QLabel("Size")
         medium_label = QLabel("Medium")
         year_label = QLabel("Year")
-        thumbnail_label = QLabel("Thumbnail")
+        thumbnail_label = QLabel("Image")
+        imagepath_label = QLabel()
 
         # Edits
         self.author_line_edit = QLineEdit()
@@ -144,7 +148,12 @@ class Archive(QWidget):
         self.size_line_edit = QLineEdit()
         self.medium_line_edit = QLineEdit()
         self.year_line_edit = QLineEdit()
-        self.thumbnail_line_edit = QLineEdit()
+        # self.thumbnail_line_edit = QLineEdit()
+        #
+        # File Selection
+        self.file_browse = QPushButton("Browse")
+        self.file_browse.clicked.connect(self.openFileDialog)
+        self.filename_edit = QLineEdit()
 
         # Bottom Buttons
         button_update_data = QPushButton("Remove artwork")
@@ -180,9 +189,10 @@ class Archive(QWidget):
         # Layout - Thumbnail
         h_layout06 = QHBoxLayout()
         h_layout06.addWidget(thumbnail_label)
-        h_layout06.addWidget(self.thumbnail_line_edit)
+        h_layout06.addWidget(self.filename_edit)
+        h_layout06.addWidget(self.file_browse)
 
-        # Layout - Thumbnail
+        # Layout - Buttons
         h_layout07 = QHBoxLayout()
         h_layout07.addWidget(button_update_data)
         h_layout07.addWidget(button_addArtwork)
@@ -230,7 +240,7 @@ class Archive(QWidget):
             self.size_line_edit.text(),
             self.medium_line_edit.text(),
             self.year_line_edit.text(),
-            self.thumbnail_line_edit.text(),
+            self.filename_edit.text(),
         ]
         self.cur.execute(
             "INSERT INTO ARTWORKS VALUES(?, ?, ?, ?, ?, ?)", self.new_artwork
@@ -249,7 +259,7 @@ class Archive(QWidget):
         self.size_line_edit.clear()
         self.medium_line_edit.clear()
         self.year_line_edit.clear()
-        self.thumbnail_line_edit.clear()
+        self.filename_edit.clear()
 
         print("New Artwork Added")
 
@@ -285,6 +295,14 @@ class Archive(QWidget):
         con.commit()
         con.close()
         print("Updated")
+
+    def openFileDialog(self):
+        filename, ok = QFileDialog.getOpenFileName(
+            self, "Select a File", "/", "Images (*.jpg *png)"
+        )
+        if filename:
+            path = Path(filename)
+            self.filename_edit.setText(str(path))
 
 
 class MainWindow(QMainWindow):
