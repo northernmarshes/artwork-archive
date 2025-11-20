@@ -1,12 +1,12 @@
 import sqlite3
 from pathlib import Path
-from PySide6.QtCore import QFileDevice, QSortFilterProxyModel, Qt
+from PySide6.QtCore import QSortFilterProxyModel, Qt
 from PySide6.QtGui import (
-    QAction,
+    # QAction,
+    # QImage,
+    QPixmap,
     QStandardItem,
     QStandardItemModel,
-    QShortcut,
-    QKeySequence,
 )
 
 from PySide6.QtWidgets import (
@@ -16,7 +16,7 @@ from PySide6.QtWidgets import (
     QHeaderView,
     QLabel,
     QMainWindow,
-    QMenu,
+    # QMenu,
     QLineEdit,
     QPushButton,
     QSizePolicy,
@@ -67,10 +67,25 @@ class Archive(QWidget):
 
         # - Creating a model -
         self.model = QStandardItemModel()
-        self.model.setHorizontalHeaderLabels(self.headers)
+        self.thumbnail_column = self.headers.index("thumbnail")
 
+        # - Loading Model
+        thumbnail_column = self.thumbnail_column
         for row in self.rows:
-            items = [QStandardItem(str(col)) for col in row]
+            items = []
+            for col_index, col_value in enumerate(row):
+                if col_index != thumbnail_column:
+                    items.append(QStandardItem(str(col_value)))
+                else:
+                    item = QStandardItem()
+                    img_path = Path(col_value)
+                    pixmap = QPixmap(str(img_path))
+                    scaledpixmap = pixmap.scaledToHeight(
+                        100, mode=Qt.TransformationMode.FastTransformation
+                    )
+                    item.setData(scaledpixmap, Qt.ItemDataRole.DecorationRole)
+                    items.append(item)
+
             self.model.appendRow(items)
 
         # - Creating a QTableView -
@@ -140,7 +155,6 @@ class Archive(QWidget):
         medium_label = QLabel("Medium")
         year_label = QLabel("Year")
         thumbnail_label = QLabel("Image")
-        imagepath_label = QLabel()
 
         # Edits
         self.author_line_edit = QLineEdit()
@@ -148,8 +162,7 @@ class Archive(QWidget):
         self.size_line_edit = QLineEdit()
         self.medium_line_edit = QLineEdit()
         self.year_line_edit = QLineEdit()
-        # self.thumbnail_line_edit = QLineEdit()
-        #
+
         # File Selection
         self.file_browse = QPushButton("Browse")
         self.file_browse.clicked.connect(self.openFileDialog)
@@ -160,6 +173,10 @@ class Archive(QWidget):
         button_update_data.clicked.connect(self.deleteArtwork)
         button_addArtwork = QPushButton("Add an artwork")
         button_addArtwork.clicked.connect(self.addArtwork)
+
+        # ---------------------------------
+        # ---------Layout Section----------
+        # ---------------------------------
 
         # Layout - Author
         h_layout01 = QHBoxLayout()
@@ -252,7 +269,7 @@ class Archive(QWidget):
         self.model.appendRow(row_items)
 
         # Scrolling to bottom of the list
-        self.table_view.scrollToBottom()
+        # self.table_view.scrollToBottom()
 
         self.author_line_edit.clear()
         self.title_line_edit.clear()
