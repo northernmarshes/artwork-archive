@@ -1,0 +1,14 @@
+* User Story: Delete an artwork
+:US:
+** As a user
+I want to delete any artwork from the database
+So that I can get rid of unwanted data
+** Acceptance Criteria
+- [ ] User can delete any row by pressing DEL button
+- [ ] User can delete any row by clicking "Remove an artwork" in the manu
+- [ ] Deleting a row is not destructive to other elements
+- [ ] Deleting shows a confirmation message
+- [ ] Artwork doesn't reappear after rebooting the app
+- [ ] Picture thumbnail is deleted from the images folder
+- [ ] Filtered view doesn't change which row is selected 
+** Notes

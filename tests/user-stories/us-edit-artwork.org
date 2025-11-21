@@ -1,0 +1,7 @@
+* User Story: Edit an existing artwork
+
+** As a user
+I want to edit an existing artwork in the database
+So that I can correct and update information.
+
+** Acceptance Criteria

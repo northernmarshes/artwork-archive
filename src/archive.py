@@ -67,27 +67,26 @@ class Archive(QWidget):
 
         # - Creating a model -
         self.model = QStandardItemModel()
+        self.model.setHorizontalHeaderLabels(self.headers)
         self.thumbnail_column = self.headers.index("thumbnail")
 
-        # - Loading Model
-        thumbnail_column = self.thumbnail_column
+        # # - Loading Model
         for row in self.rows:
             items = []
             for col_index, col_value in enumerate(row):
-                if col_index != thumbnail_column:
-                    items.append(QStandardItem(str(col_value)))
-                else:
+                if col_index == self.thumbnail_column:
                     item = QStandardItem()
-                    img_path = Path(col_value)
-                    pixmap = QPixmap(str(img_path))
-                    scaledpixmap = pixmap.scaledToHeight(
-                        100, mode=Qt.TransformationMode.FastTransformation
-                    )
-                    item.setData(scaledpixmap, Qt.ItemDataRole.DecorationRole)
+                    # img_path = Path(col_value)
+                    # pixmap = QPixmap(str(img_path))
+                    # scaledpixmap = pixmap.scaledToHeight(
+                    #     100, mode=Qt.TransformationMode.FastTransformation
+                    # )
+                    # item.setData(scaledpixmap, Qt.ItemDataRole.DecorationRole)
                     items.append(item)
-
+                else:
+                    items.append(QStandardItem(str(col_value)))
             self.model.appendRow(items)
-
+        #
         # - Creating a QTableView -
         self.table_view = QTableView()
         self.table_view.setModel(self.model)
@@ -265,7 +264,26 @@ class Archive(QWidget):
         self.con.commit()
 
         # Adding new row without updating
-        row_items = [QStandardItem(str(item)) for item in self.new_artwork]
+
+        # row_items = [QStandardItem(str(item)) for item in self.new_artwork]
+        # self.model.appendRow(row_items)
+
+        row_items = []
+        self.thumbnail_column = self.headers.index("thumbnail")
+        for col_index, item_value in enumerate(self.new_artwork):
+            if col_index == self.thumbnail_column:
+                item = QStandardItem()
+                img_path = Path("database") / item_value
+                if img_path.exists():
+                    pixmap = QPixmap(str(img_path))
+                    if not pixmap.isNull():
+                        scaledpixmap = pixmap.scaledToHeight(
+                            100, mode=Qt.TransformationMode.FastTransformation
+                        )
+                        item.setData(scaledpixmap, Qt.ItemDataRole.DecorationRole)
+                    row_items.append(item)
+            else:
+                row_items.append(QStandardItem(str(item_value)))
         self.model.appendRow(row_items)
 
         # Scrolling to bottom of the list

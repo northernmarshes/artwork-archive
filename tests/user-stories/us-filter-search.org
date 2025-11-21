@@ -1,0 +1,12 @@
+* User Story: Filter Search
+:US:
+** As a user
+I want to filter my artworks
+So that I can find artworks I want.
+** Acceptance Criteria
+- [ ] Filtering is case insensitive
+- [ ] Filtered view is sorted properly
+- [ ] Filtering is not destructive to the database
+** Notes
+- 
+
