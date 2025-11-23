@@ -1,0 +1,12 @@
+* User Story: Undo/Redo
+:US:
+** As a user
+I want to be able to undo and redo my changes in the current session,
+So that I don't lose data when I make a mistake.
+** Acceptance Criteria
+- [ ] User is able to undo 5 last changes by pushing "Undo"/CTRL+Z
+- [ ] User is able to redo the changes by pressing "Redo"/CTRL+R
+- [ ] Undo is not destructive to other elements
+- [ ] Redo is not destructive to other elements
+  
+          
