@@ -24,6 +24,7 @@ from PySide6.QtWidgets import (
     QVBoxLayout,
     QWidget,
 )
+from database.sample_data import sample_artworks
 
 
 class Archive(QWidget):
@@ -52,9 +53,8 @@ class Archive(QWidget):
             )
             print("Created database")
 
-            data = [
-                ("Edna Baud", "Throne of Dust", "200cm", "Steel", "2025", "thumb.jpg"),
-            ]
+            data = sample_artworks
+
             self.cur.executemany("INSERT INTO ARTWORKS VALUES(?, ?, ?, ?, ?, ?)", data)
             self.con.commit()
             print("Created sample row")
