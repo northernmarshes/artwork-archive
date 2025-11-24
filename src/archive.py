@@ -27,7 +27,7 @@ from PySide6.QtWidgets import (
 
 
 class Archive(QWidget):
-    def __init__(self):
+    def __init__(self, datapath=None):
         super().__init__()
         self.setWindowTitle("artwork-archive")
         self.setGeometry(100, 100, 500, 100)
@@ -35,8 +35,11 @@ class Archive(QWidget):
         # ---------------------------------
         # - Initializing Database Section -
         # ---------------------------------
+        if datapath is None:
+            self.datapath = Path("database/artworks.db")
+        else:
+            self.datapath = Path(datapath)
 
-        self.datapath = Path("database/artworks.db")
         if self.datapath.exists():
             self.con = sqlite3.connect(self.datapath)
             self.cur = self.con.cursor()
