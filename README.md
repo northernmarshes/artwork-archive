@@ -1,13 +1,13 @@
 ## Artwork Archive – PySide6 Desktop Application
 
-### Work in progress, not ready for production
+### !!! Work in progress, not ready for production
 
 Artwork Archive is a lightweight desktop app for artists, galleries and
 collectors who need to store, organize and browse their artwork database.
 It offers a table-based view, fast filtering, a simple form for adding works,
 local SQLite storage, PDF export and optional image thumbnails.
 
-## Technical Overview
+### Technical Overview
 
 The app is built with PySide6 and uses QTableView with a QSortFilterProxyModel
 for sorting and live filtering. Data is stored in a local SQLite database created

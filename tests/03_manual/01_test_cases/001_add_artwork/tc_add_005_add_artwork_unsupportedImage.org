@@ -1,0 +1,39 @@
+* Test Case: TC-ADD-005 - Add artwork with invalid year data
+:PROPERTIES:
+:ID: TC-ADD-005
+:AUTHOR: Edna
+:RELATED_USER_STORY: <us-add-artwork.org>
+:TYPE: Functional
+:PRIORITY: High
+:END:
+
+** Test Objective
+Verify that the system prevents adding artwork with unsupported image format
+** Pre-conditions
+- Application is running
+** Test Steps
+1. Open the application
+2. Navigate to the form section
+3. Fill all the forms with valid data
+4. Click "Browse" and select a GIF image
+5. Click "Add Artwork"
+** Expected Results
+- Artwork is NOT saved
+- Error message appears: "Image has to be either JPG or PNG"
+- Table remains unchanged
+ 
+* Test Execution
+** Info:
+- Tester: 
+- Date: 
+** Expected Results Verification:
+- [ ] Artwork is NOT saved
+- [ ] Error message appears: "Image has to be either JPG or PNG"
+- [ ] Table remains unchanged
+** Overall Result:
+- [ ] Pass
+- [ ] Fail
+- [ ] Blocked
+- Actual Result: 
+- Bugs Found / Bug ID: 
+- Notes / Observations: 

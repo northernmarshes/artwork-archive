@@ -1,0 +1,39 @@
+* Test Case: TC-ADD-004 - Add artwork with invalid year data
+:PROPERTIES:
+:ID: TC-ADD-004
+:AUTHOR: Edna
+:RELATED_USER_STORY: <us-add-artwork.org>
+:TYPE: Functional
+:PRIORITY: High
+:END:
+
+** Test Objective
+Verify that the system prevents adding artwork with invalid year data
+** Pre-conditions
+- Application is running
+** Test Steps
+1. Open the application
+2. Navigate to the form section
+3. Fill all the forms with valid data
+4. Fill "Year" form with a string "Twenty Two"
+5. Click "Add Artwork"
+** Expected Results
+- Artwork is NOT saved
+- Error message appears: "Year is suppoused to be a number"
+- Table remains unchanged
+ 
+* Test Execution
+** Info:
+- Tester: 
+- Date: 
+** Expected Results Verification:
+- [ ] Artwork is NOT saved
+- [ ] Error message appears: "Year is suppoused to be a number"
+- [ ] Table remains unchanged
+** Overall Result:
+- [ ] Pass
+- [ ] Fail
+- [ ] Blocked
+- Actual Result: 
+- Bugs Found / Bug ID: 
+- Notes / Observations: 
