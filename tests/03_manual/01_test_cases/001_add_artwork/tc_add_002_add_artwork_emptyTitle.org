@@ -1,0 +1,40 @@
+* Test Case: TC-ADD-002 - Add artwork with empty title
+:PROPERTIES:
+:ID: TC-ADD-002
+:AUTHOR: Edna
+:RELATED_USER_STORY: <us-add-artwork.org>
+:TYPE: Functional
+:PRIORITY: High
+:END:
+
+** Test Objective
+Verify that the system shows an error when adding an artwork with an empty title
+** Pre-conditions
+- Application is running
+** Test Steps
+1. Open the application
+2. Navigate to the form section
+3. Leave the Title field empty
+4. Fill all the other fields with valid data
+5. Click "Add Artwork"
+** Expected Results
+- Artwork is NOT saved
+- Error message appears: "The title is required"
+- Table remains unchanged
+** Notes / Edge Cases
+- 
+* Test Execution
+** Info:
+- Tester: 
+- Date: 
+** Expected Results Verification:
+- [ ] Artwork is NOT saved
+- [ ] Error message appears: "The title is required"
+- [ ] Table remains unchanged
+** Overall Result:
+- [ ] Pass
+- [ ] Fail
+- [ ] Blocked
+- Actual Result: 
+- Bugs Found / Bug ID: 
+- Notes / Observations: 

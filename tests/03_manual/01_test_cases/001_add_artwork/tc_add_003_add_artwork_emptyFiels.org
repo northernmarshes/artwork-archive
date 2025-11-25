@@ -1,0 +1,38 @@
+* Test Case: TC-ADD-003 - Add artwork with all fields empty
+:PROPERTIES:
+:ID: TC-ADD-003
+:AUTHOR: Edna
+:RELATED_USER_STORY: <us-add-artwork.org>
+:TYPE: Functional
+:PRIORITY: High
+:END:
+
+** Test Objective
+Verify that the system prevents adding artwork when all fields are empty
+** Pre-conditions
+- Application is running
+** Test Steps
+1. Open the application
+2. Navigate to the form section
+3. Leave all fields empty
+4. Click "Add Artwork"
+** Expected Results
+- Artwork is NOT saved
+- Error message appears: "All fields are required"
+- Table remains unchanged
+ 
+* Test Execution
+** Info:
+- Tester: 
+- Date: 
+** Expected Results Verification:
+- [ ] Artwork is NOT saved
+- [ ] Error message appears: "All fields are required"
+- [ ] Table remains unchanged
+** Overall Result:
+- [ ] Pass
+- [ ] Fail
+- [ ] Blocked
+- Actual Result: 
+- Bugs Found / Bug ID: 
+- Notes / Observations: 

@@ -4,12 +4,12 @@
 I want to add a new artwork to the database
 So that I can keep track of all my works in one place.
 ** Acceptance Criteria
-- [ ] User can fill the title, artist, year, medium
-- [ ] User can add an image from a directiory
-- [ ] User can save the new artwork succesfully
-- [ ] New artwork appears in the main table immedietly
-- [ ] Image shows correctly in the thumbnail column
-- [ ] Other rows are not destructed in any way by the new row    
-- [ ] Invalid data (e.g., empty title) shows an error message
+  1. User can fill the title, author, year, medium
+  2. User can add an image from a directory
+  3. User can save the new artwork succesfully
+  4. New artwork appears in the main table immedietly
+  5. Image shows correctly in the thumbnail column
+  6. Other rows are not destructed in any way by the new row    
+  7. Invalid data (e.g., empty title) shows an error message
 ** Notes
 - Test behavior when the database is empty or missing

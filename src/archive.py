@@ -24,7 +24,7 @@ from PySide6.QtWidgets import (
     QVBoxLayout,
     QWidget,
 )
-from database.sample_data import sample_artworks
+from src.database.sample_data import sample_artworks
 
 
 class Archive(QWidget):
@@ -51,13 +51,13 @@ class Archive(QWidget):
             self.cur.execute(
                 "CREATE TABLE ARTWORKS(author, title, size, medium, year, thumbnail)"
             )
-            print("Created database")
+            print("Created a new database")
 
             data = sample_artworks
 
             self.cur.executemany("INSERT INTO ARTWORKS VALUES(?, ?, ?, ?, ?, ?)", data)
             self.con.commit()
-            print("Created sample row")
+            print("Created a sample row")
             self.con.close()
 
         # - Uploading database -
@@ -299,18 +299,19 @@ class Archive(QWidget):
         self.year_line_edit.clear()
         self.filename_edit.clear()
 
-        print("New Artwork Added")
+        print("Artwork added successfully")
 
-    def deleteArtwork(self):
+    def deleteArtwork(self, row: int = None):
         """A method that deletes an artwork"""
         self.con = sqlite3.connect(self.datapath)
         self.cur = self.con.cursor()
-        indexes = self.table_view.selectionModel().selectedRows()
-        index = indexes[0]
-        source_index = self.proxy_model.mapToSource(index)
-        row = source_index.row()
-
+        if row is None:
+            indexes = self.table_view.selectionModel().selectedRows()
+            index = indexes[0]
+            source_index = self.proxy_model.mapToSource(index)
+            row = source_index.row()
         self.model.removeRow(row)
+        print("Artwork deleted successfully")
         self.table_view.scrollToBottom()
 
     def saveArchive(self):

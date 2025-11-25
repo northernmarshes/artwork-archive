@@ -1,0 +1,52 @@
+* Test Case: TC-ADD-001 - Add a valid artwork
+:PROPERTIES:
+:ID: TC-ADD-001
+:AUTHOR: Edna
+:RELATED_USER_STORY: <us-add-artwork.org>
+:TYPE: Functional 
+:PRIORITY: High 
+:END:
+
+** Test Objective
+- Verify that a user can successfully add a valid artwork to the database, including images and metadata
+** Pre-conditions
+- Application is running
+- Database is accessible (empty or populated)
+** Test Steps
+1. Open the application
+2. Navigate to the form section
+3. Fill all the fields with valid data:
+   - author: 
+   - title:
+   - size: 
+   - medium:
+   - year:
+4. Click "Browse" and select JPG or PNG image  
+6. Click "Add an Artwork"
+** Expected Results
+1. Artwork is saved successfully
+2. Table updates immediately with the new artwork
+3. Thumbnail displays correctly
+4. No existing rows are affected
+5. Proper success message appears
+** Notes / Edge Cases
+- Test with empty database
+- Test with sorting on/off
+  
+* Test Execution
+** Info:
+- Tester: 
+- Date: 
+** Expected Results Verification:
+- [ ] Artwork is saved successfully
+- [ ] Table updates immediately with the new artwork
+- [ ] Thumbnail displays correctly
+- [ ] No existing rows are affected
+- [ ] Proper success message appears
+** Overall Result:
+- [ ] Pass
+- [ ] Fail
+- [ ] Blocked
+- Actual Result: 
+- Bugs Found / Bug ID: 
+- Notes / Observations: 
