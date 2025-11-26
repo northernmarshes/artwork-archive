@@ -1,3 +1,5 @@
+import pytest
+
 single_valid_artwork = [
     (
         "Emily Turner",
@@ -25,3 +27,28 @@ single_invalid_year = [
         "sample25.jpg",
     )
 ]
+
+three_special_chars_artworks_data = [
+    (
+        "山田太郎",
+        "春の風景",
+        "100×100cm",
+        "アクリル絵具",
+        "２０２４年",
+        "path.jpg",
+    ),
+    ("أحمد العلي", "مشهد الغروب", "٨٠×٦٠ سم", "زيت", "٢٠٢٣", "path.jpg"),
+    (
+        "Mårten Ødegård",
+        "Unicode Dreams",
+        "50×70㎝",
+        "𝕬𝖗𝖙 𝕸𝖎𝖝",
+        "𝟚𝟘𝟚𝟜",
+        "path.jpg",
+    ),
+]
+
+
+@pytest.fixture
+def three_special_chars_artworks():
+    return three_special_chars_artworks_data

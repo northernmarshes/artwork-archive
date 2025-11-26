@@ -1,6 +1,8 @@
-## Artwork Archive – PySide6 Desktop Application
+## Artwork Archive
 
-### !!! Work in progress, not ready for production
+### **!!! Work in progress - not ready for use!!!**
+
+### Overview
 
 Artwork Archive is a lightweight desktop app for artists, galleries and
 collectors who need to store, organize and browse their artwork database.
@@ -15,7 +17,7 @@ on first launch. The UI includes dynamic table rows, input forms for CRUD operat
 and basic file selection for thumbnails. The project structure is intentionally
 minimal to highlight GUI logic and data flow.
 
-## Testing and QA Scope
+### Testing and QA Scope
 
 This project is also part of my QA portfolio and includes user stories, functional
 test cases, exploratory testing notes, bug reports and automated tests created during

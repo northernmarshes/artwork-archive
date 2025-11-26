@@ -1,0 +1,45 @@
+* Test Case: TC-DEL-001 - Deleting a selected row
+:PROPERTIES:
+:ID: TC-DEL-001
+:AUTHOR: Edna
+:RELATED_USER_STORY: <us-delete-artwork.org>
+:TYPE: Functional
+:PRIORITY: High
+:END:
+
+** Test Objective
+Verify that the user is able to delete an artwork from the table
+** Pre-conditions
+- Application is running
+- The table has at least one row
+** Test Steps
+1. Click on an existing row
+2. Press <delete>
+3. Type the title in the search bar
+4. Check if the row doesn't reappear
+** Expected Results
+- The selected row is imidietely deleted
+- Other rows are not affected
+- Picture thumbnail is deleted from the folder
+- Confirmation message is being displayed
+- The picture doesn't reappear in search filter
+** Notes / Edge Cases
+- -
+
+* Test Execution
+** Info:
+- Tester: 
+- Date: 
+** Expected Results Verification:
+- [ ] The selected row is imidietely deleted
+- [ ] Other rows are not affected
+- [ ] Picture thumbnail is deleted from the folder
+- [ ] Confirmation message is being displayed
+- [ ] The picture doesn't reappear in search filter
+** Overall Result:
+- [ ] Pass
+- [ ] Fail
+- [ ] Blocked
+- Actual Result: 
+- Bugs Found / Bug ID: 
+- Notes / Observations:

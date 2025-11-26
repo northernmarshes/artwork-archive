@@ -1,0 +1,36 @@
+* Test Case: TC-DEL-002 - Deleting with no row selected
+:PROPERTIES:
+:ID: TC-DEL-002
+:AUTHOR: Edna
+:RELATED_USER_STORY: <us-delete-artwork.org>
+:TYPE: Functional
+:PRIORITY: Medium
+:END:
+
+** Test Objective
+Verify that the system doesn't allow to delete when no row is selected
+** Pre-conditions
+- Application is running
+- The table has at least one row
+** Test Steps
+1. Make sure no row is selected
+2. Press <delete>
+3. Check if the no row is deleted
+** Expected Results
+- No row is deleted or affected in any way
+** Notes / Edge Cases
+- -
+
+* Test Execution
+** Info:
+- Tester: 
+- Date: 
+** Expected Results Verification:
+- [ ] No row is deleted or affected in any way
+** Overall Result:
+- [ ] Pass
+- [ ] Fail
+- [ ] Blocked
+- Actual Result: 
+- Bugs Found / Bug ID: 
+- Notes / Observations:

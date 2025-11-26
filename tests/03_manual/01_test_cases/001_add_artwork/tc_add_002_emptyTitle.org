@@ -1,6 +1,6 @@
-* Test Case: TC-ADD-005 - Add artwork with invalid image type
+* Test Case: TC-ADD-002 - Add artwork with empty title
 :PROPERTIES:
-:ID: TC-ADD-005
+:ID: TC-ADD-002
 :AUTHOR: Edna
 :RELATED_USER_STORY: <us-add-artwork.org>
 :TYPE: Functional
@@ -8,27 +8,27 @@
 :END:
 
 ** Test Objective
-Verify that the system prevents adding artwork with unsupported image format
+Verify that the system shows an error when adding an artwork with an empty title
 ** Pre-conditions
 - Application is running
 ** Test Steps
-1. Open the application
-2. Navigate to the form section
-3. Fill all the forms with valid data
-4. Click "Browse" and select a GIF image
-5. Click "Add Artwork"
+1. Navigate to the form section
+2. Leave the Title field empty
+3. Fill all the other fields with valid data
+4. Click "Add Artwork"
 ** Expected Results
 - Artwork is NOT saved
-- Error message appears: "Image has to be either JPG or PNG"
+- Error message appears: "The title is required"
 - Table remains unchanged
- 
+** Notes / Edge Cases
+- 
 * Test Execution
 ** Info:
 - Tester: 
 - Date: 
 ** Expected Results Verification:
 - [ ] Artwork is NOT saved
-- [ ] Error message appears: "Image has to be either JPG or PNG"
+- [ ] Error message appears: "The title is required"
 - [ ] Table remains unchanged
 ** Overall Result:
 - [ ] Pass

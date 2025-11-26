@@ -13,16 +13,15 @@
 - Application is running
 - Database is accessible (empty or populated)
 ** Test Steps
-1. Open the application
-2. Navigate to the form section
-3. Fill all the fields with valid data:
-   - author: 
-   - title:
-   - size: 
-   - medium:
-   - year:
-4. Click "Browse" and select JPG or PNG image  
-6. Click "Add an Artwork"
+1. Navigate to the form section
+2. Fill all the fields with valid data:
+   - author: Emily Turner
+   - title: Silent Horizon
+   - size: 90x90cm
+   - medium: Acrylic on Canvas
+   - year: 2025
+3. Click "Browse" and select JPG or PNG image  
+4. Click "Add an Artwork"
 ** Expected Results
 1. Artwork is saved successfully
 2. Table updates immediately with the new artwork

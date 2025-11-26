@@ -1,6 +1,6 @@
-* Test Case: TC-ADD-003 - Add artwork with all fields empty
+* Test Case: TC-ADD-005 - Add artwork with invalid image type
 :PROPERTIES:
-:ID: TC-ADD-003
+:ID: TC-ADD-005
 :AUTHOR: Edna
 :RELATED_USER_STORY: <us-add-artwork.org>
 :TYPE: Functional
@@ -8,17 +8,23 @@
 :END:
 
 ** Test Objective
-Verify that the system prevents adding artwork when all fields are empty
+Verify that the system prevents adding artwork with unsupported image format
 ** Pre-conditions
 - Application is running
 ** Test Steps
 1. Open the application
 2. Navigate to the form section
-3. Leave all fields empty
-4. Click "Add Artwork"
+3. Fill all the forms with valid data
+   - author: Emily Turner
+   - title: Silent Horizon
+   - size: 90x90cm
+   - medium: Acrylic on Canvas
+   - year: 2025
+4. Click "Browse" and select a GIF image
+5. Click "Add Artwork"
 ** Expected Results
 - Artwork is NOT saved
-- Error message appears: "All fields are required"
+- Error message appears: "Image has to be either JPG or PNG"
 - Table remains unchanged
  
 * Test Execution
@@ -27,7 +33,7 @@ Verify that the system prevents adding artwork when all fields are empty
 - Date: 
 ** Expected Results Verification:
 - [ ] Artwork is NOT saved
-- [ ] Error message appears: "All fields are required"
+- [ ] Error message appears: "Image has to be either JPG or PNG"
 - [ ] Table remains unchanged
 ** Overall Result:
 - [ ] Pass
