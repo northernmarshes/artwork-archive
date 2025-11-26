@@ -4,6 +4,7 @@ from PySide6.QtCore import QSortFilterProxyModel, Qt
 from PySide6.QtGui import (
     # QAction,
     # QImage,
+    QIntValidator,
     QPixmap,
     QStandardItem,
     QStandardItemModel,
@@ -24,7 +25,7 @@ from PySide6.QtWidgets import (
     QVBoxLayout,
     QWidget,
 )
-from src.database.sample_data import sample_artworks
+from src.database.sample_data import three_valid_artworks
 
 
 class Archive(QWidget):
@@ -53,7 +54,7 @@ class Archive(QWidget):
             )
             print("Created a new database")
 
-            data = sample_artworks
+            data = three_valid_artworks
 
             self.cur.executemany("INSERT INTO ARTWORKS VALUES(?, ?, ?, ?, ?, ?)", data)
             self.con.commit()
@@ -158,12 +159,16 @@ class Archive(QWidget):
         year_label = QLabel("Year")
         thumbnail_label = QLabel("Image")
 
+        # Validators
+        self.yearValidator = QIntValidator(0, 2100)
+
         # Edits
         self.author_line_edit = QLineEdit()
         self.title_line_edit = QLineEdit()
         self.size_line_edit = QLineEdit()
         self.medium_line_edit = QLineEdit()
         self.year_line_edit = QLineEdit()
+        self.year_line_edit.setValidator(self.yearValidator)
 
         # File Selection
         self.file_browse = QPushButton("Browse")
@@ -264,6 +269,15 @@ class Archive(QWidget):
         self.cur.execute(
             "INSERT INTO ARTWORKS VALUES(?, ?, ?, ?, ?, ?)", self.new_artwork
         )
+
+        # Checking if title field is filled
+        if not self.title_line_edit.text():
+            raise ValueError("All fields must be filled")
+
+        # Checking if year is an integer
+        if not self.year_line_edit.hasAcceptableInput():
+            raise ValueError("Invalid year value")
+
         self.con.commit()
 
         # Adding new row without updating

@@ -1,0 +1,41 @@
+* Test Case: TC-EDT-002 - Test Artwork Editing with Invalid Type
+:PROPERTIES:
+:ID: TC-EDT-002
+:AUTHOR: Edna
+:RELATED_USER_STORY: <us-edit-artwork.org>
+:TYPE: Functional
+:PRIORITY: Medium
+:END:
+
+** Test Objective
+Verify that the user is unable to input invalid type
+** Pre-conditions
+- Application is running
+** Test Steps
+1. Open the application
+2. Click into a cell in a random row
+3. Delete the current value
+4. Type new value of the invalid type
+   - eg. string for "Year"
+5. Push <return> key
+   
+** Expected Results
+- The cell is not updated
+- Message appears: "Data is of wrong type"
+** Notes / Edge Cases
+- -
+
+* Test Execution
+** Info:
+- Tester: 
+- Date: 
+** Expected Results Verification:
+- [ ] The cell is not updated
+- [ ] Message appears: "Data is of wrong type"
+** Overall Result:
+- [ ] Pass
+- [ ] Fail
+- [ ] Blocked
+- Actual Result: 
+- Bugs Found / Bug ID: 
+- Notes / Observations:

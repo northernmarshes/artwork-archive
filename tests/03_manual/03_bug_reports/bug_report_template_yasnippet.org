@@ -1,0 +1,75 @@
+# -*- mode: snippet -*-
+# name: bug-report
+# key: bug
+# --
+* Bug Report: ${1:BR-XXX-###} - ${2:Brief bug description}
+:PROPERTIES:
+:BUG_ID: ${1:$(replace-regexp-in-string "Bug Report: \\(BR-[^-]+-[0-9]+\\).*" "\\1" yas-text)}
+:REPORTER: ${3:}
+:DATE_REPORTED: ${4:`(format-time-string "%Y-%m-%d")`}
+:RELATED_TEST_CASE: ${5:TC-XXX-###}
+:VERSION: ${6:v1.0.0}
+:SEVERITY: ${7:$$(yas-choose-value '("Critical" "High" "Medium" "Low"))}
+:PRIORITY: ${8:$$(yas-choose-value '("P1-Immediate" "P2-Current Sprint" "P3-Next Sprint" "P4-When Time Permits"))}
+:TYPE: ${9:$$(yas-choose-value '("Functional" "UI/UX" "Performance" "Security" "Data Integrity" "Compatibility"))}
+:STATUS: ${10:$$(yas-choose-value '("Open" "In Progress" "Fixed" "Closed" "Reopen" "Won't Fix"))}
+:END:
+
+** Environment
+- Operating System: ${11:}
+- Browser: ${12:}
+- Database: ${13:}
+- Python Version: ${14:}
+- Screen Resolution: ${15:}
+
+** Summary
+${16:One-line clear description of the bug}
+
+** Description
+${17:Detailed explanation of what went wrong and why it's a problem}
+
+** Steps to Reproduce
+1. ${18:First step - be specific}
+2. ${19:Second step - include exact values}
+3. ${20:Third step}
+4. ${21:Continue until bug appears}
+
+** Expected Result
+${22:What should happen according to requirements}
+
+** Actual Result
+${23:What actually happened - be specific}
+
+** Reproducibility
+${24:$$(yas-choose-value '("Always (100%)" "Frequently (75-99%)" "Sometimes (25-74%)" "Rarely (<25%)" "Unable to reproduce"))}
+- Attempts: ${25:Reproduced X out of Y times}
+
+** Attachments
+- [ ] Screenshot: ${26:filename.png}
+- [ ] Video: ${27:screenrecording.mp4}
+- [ ] Log file: ${28:error.log}
+- [ ] Database dump: ${29:state_before_bug.db}
+- [ ] Console output: ${30:console_output.txt}
+
+** Workaround
+${31:Describe temporary solution if exists, or write "No workaround available"}
+
+** Additional Notes
+${32:Any other relevant information, patterns noticed, or related issues}
+$0
+
+** Developer Notes
+(To be filled by developer)
+- Root Cause: 
+- Fix Applied: 
+- Fixed In Version: 
+- Fixed Date: 
+
+** Verification
+- Verified By: 
+- Verification Date: 
+- Verification Result:
+  - [ ] Pass - Bug is fixed
+  - [ ] Fail - Bug still exists
+  - [ ] Reopen - New issues found
+- Verification Notes:

@@ -1,0 +1,42 @@
+* Test Case: TC-EDT-001 - Test Artwork Editing
+:PROPERTIES:
+:ID: TC-EDT-001
+:AUTHOR: Edna
+:RELATED_USER_STORY: <us-edit-artwork.org>
+:TYPE: Functional
+:PRIORITY: Medium
+:END:
+
+** Test Objective
+Verify that the user is able to edit any artwork
+** Pre-conditions
+- Application is running
+** Test Steps
+1. Open the application
+2. Click into a cell in a random row
+3. Delete the current value
+4. Type new value of the same type
+5. Push <return> key
+   
+** Expected Results
+- New value stays in the cell
+- Message appears: "The cell has been updated"
+- No other rows are affected
+** Notes / Edge Cases
+- -
+
+* Test Execution
+** Info:
+- Tester: 
+- Date: 
+** Expected Results Verification:
+- [ ] New value stays in the cell
+- [ ] Message appears: "The cell has been updated"
+- [ ] No other rows are affected
+** Overall Result:
+- [ ] Pass
+- [ ] Fail
+- [ ] Blocked
+- Actual Result: 
+- Bugs Found / Bug ID: 
+- Notes / Observations:

@@ -1,4 +1,4 @@
-* Test Case: TC-ADD-005 - Add artwork with invalid year data
+* Test Case: TC-ADD-005 - Add artwork with invalid image type
 :PROPERTIES:
 :ID: TC-ADD-005
 :AUTHOR: Edna

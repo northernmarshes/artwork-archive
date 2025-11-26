@@ -1,0 +1,46 @@
+# -*- mode: snippet -*-
+# name: test-case
+# key: tc
+# --
+* Test Case: ${1:TC-XXX-###} - ${2:Test case title}
+:PROPERTIES:
+:ID: ${1:$(replace-regexp-in-string "Test Case: \\(TC-[^-]+-[0-9]+\\).*" "\\1" yas-text)}
+:AUTHOR: ${3:}
+:RELATED_USER_STORY: <${4:us-feature-name.org}>
+:TYPE: ${5:$$(yas-choose-value '("Functional" "Non-Functional" "Regression" "Smoke" "Integration"))}
+:PRIORITY: ${6:$$(yas-choose-value '("High" "Medium" "Low" "Critical"))}
+:END:
+
+** Test Objective
+${7:Verify that the system...}
+
+** Pre-conditions
+- ${8:Application is running}
+$0
+
+** Test Steps
+1. ${9:First step}
+2. ${10:Second step}
+3. ${11:Third step}
+
+** Expected Results
+- ${12:First expected result}
+- ${13:Second expected result}
+
+** Notes / Edge Cases
+- ${14:Any additional notes or edge cases to consider}
+
+* Test Execution
+** Info:
+- Tester: 
+- Date: 
+** Expected Results Verification:
+- [ ] ${12:$(replace-regexp-in-string "^- " "" yas-text)}
+- [ ] ${13:$(replace-regexp-in-string "^- " "" yas-text)}
+** Overall Result:
+- [ ] Pass
+- [ ] Fail
+- [ ] Blocked
+- Actual Result: 
+- Bugs Found / Bug ID: 
+- Notes / Observations:

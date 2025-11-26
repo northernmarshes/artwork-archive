@@ -6,6 +6,6 @@ So that I can correct and update information.
 ** Acceptance Criteria
   1. User can edit existing row by clicking into a cell
   2. Data stays in the cell after clicking outside of the cell
-  3. Data stays in the cell after pushing enter
+  3. Data stays in the cell after pushing <return>
   4. Data is overwriten in the database after hitting "save database"
 ** Notes

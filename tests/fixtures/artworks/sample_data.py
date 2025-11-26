@@ -14,3 +14,14 @@ three_valid_artworks = [
     ("John Doe", "Landscape", "80x60cm", "Oil", "2023", "sample2.jpg"),
     ("Alice Brown", "Portrait", "50x70cm", "Watercolor", "2024", "sample3.jpg"),
 ]
+
+single_invalid_year = [
+    (
+        "Rose Black",
+        "Cold Sunday",
+        "20x40cm",
+        "Acrylic on Canvas",
+        "Two Thousand",
+        "sample25.jpg",
+    )
+]
