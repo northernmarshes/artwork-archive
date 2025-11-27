@@ -1,0 +1,49 @@
+* Test Case: TC-EXP-002 - Testing Export With Empty Database
+:PROPERTIES:
+:ID:       TC-EXP-002
+:AUTHOR:   Edna
+:RELATED_USER_STORY: <us-export-database.org>
+:RELATED_AUTOMATION: <test_export_database.py>
+:TYPE: Functional
+:PRIORITY: Medium
+:END:
+
+** Test Objective
+Verify that user can save an empty database
+
+** Pre-conditions
+- Application is running
+- Database is empty
+
+
+** Test Steps
+1. Click "File"
+2. Click "Export Database"
+3. Choose a local folder
+4. Click "Save"
+5. Navigate to the chosen folder
+6. Open the database using SQL reader of choice
+7. Check if database exists
+8. Check if database is empty
+
+** Expected Results
+- Database file is saved in the chosen directory
+- Database doesn't contain data
+
+** Notes / Edge Cases
+- -
+
+* Test Execution
+** Info:
+- Tester: 
+- Date: 
+** Expected Results Verification:
+- [ ] Database file is saved in the chosen directory
+- [ ] Database doesn't contain data
+** Overall Result:
+- [ ] Pass
+- [ ] Fail
+- [ ] Blocked
+- Actual Result: 
+- Bugs Found / Bug ID: 
+- Notes / Observations:

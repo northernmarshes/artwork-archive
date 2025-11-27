@@ -1,0 +1,51 @@
+* Test Case: TC-EXP-003 - Testing Export With Unicode Data
+:PROPERTIES:
+:ID:       TC-EXP-003
+:AUTHOR:   Edna
+:RELATED_USER_STORY: <us-export-database.org>
+:RELATED_AUTOMATION: <test_export_database.py>
+:TYPE: Functional
+:PRIORITY: Medium
+:END:
+
+** Test Objective
+Verify that user is able to export database with unicode data
+
+** Pre-conditions
+- Application is running
+- The three_special_chars_artworks_data list is loaded to the class:
+("山田太郎", "春の風景", "100×100cm", "アクリル絵具", "2024", "path.jpg"),
+("أحمد العلي", "مشهد الغروب", "٨٠×٦٠ سم", "زيت", "2024", "path.jpg"),
+("Mårten Ødegård", "Unicode Dreams", "50×70㎝", "𝕬𝖗𝖙 𝕸𝖎𝖝", "2024", "path.jpg"),
+
+
+** Test Steps
+1. Click "File"
+2. Click "Export Database"
+3. Choose a local folder
+4. Click "Save"
+5. Navigate to the chosen folder
+6. Open the database using SQL reader of choice
+7. Check the contents of the database
+
+** Expected Results
+- Database file is saved in the chosen directory
+- Database contains the same rows as visible in the application
+
+** Notes / Edge Cases
+- -
+
+* Test Execution
+** Info:
+- Tester: 
+- Date: 
+** Expected Results Verification:
+- [ ] Database file is saved in the chosen directory
+- [ ] Database contains the same rows as visible in the application
+** Overall Result:
+- [ ] Pass
+- [ ] Fail
+- [ ] Blocked
+- Actual Result: 
+- Bugs Found / Bug ID: 
+- Notes / Observations:

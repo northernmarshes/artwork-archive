@@ -1,0 +1,50 @@
+* Test Case: TC-EXP-001 - Testing Export - Happy Path
+:PROPERTIES:
+:ID:       TC-EXP-001
+:AUTHOR:   Edna
+:RELATED_USER_STORY: <us-export-database.org>
+:RELATED_AUTOMATION: <test_export_database.py>
+:TYPE: Functional
+:PRIORITY: Medium
+:END:
+
+** Test Objective
+Verify that user is able to export modified database
+
+** Pre-conditions
+- Application is running
+- The three_valid_artworks list is loaded to the class:
+  ("Jane Smith", "Abstract 1", "100x100cm", "Acrylic", "2024", "sample1.jpg"),
+  ("John Doe", "Landscape", "80x60cm", "Oil", "2023", "sample2.jpg"),
+  ("Alice Brown", "Portrait", "50x70cm", "Watercolor", "2024", "sample3.jpg"),
+
+** Test Steps
+1. Click "File"
+2. Click "Export Database"
+3. Choose a local folder
+4. Click "Save"
+5. Navigate to the chosen folder
+6. Open the database using SQL reader of choice
+7. Check the contents of the database
+
+** Expected Results
+- Database file is saved in the chosen directory
+- Database contains the same rows as visible in the table
+
+** Notes / Edge Cases
+- -
+
+* Test Execution
+** Info:
+- Tester: 
+- Date: 
+** Expected Results Verification:
+- [ ] Database file is saved in the chosen directory
+- [ ] Database contains the same rows as visible in the table
+** Overall Result:
+- [ ] Pass
+- [ ] Fail
+- [ ] Blocked
+- Actual Result: 
+- Bugs Found / Bug ID: 
+- Notes / Observations:

@@ -37,6 +37,7 @@ def test_add_artwork_with_unicode_data(archive_fixture):
     addedArtist = test_archive.model.item(last_row).text()
     print(f"Added artwork by {addedArtist}")
 
+    assert rows_after == rows_before + 1
     assert addedArtist == japaneseArtist
 
 
