@@ -1,0 +1,45 @@
+* Test Case: TC-FLT-003 - Test filtering with unicode
+:PROPERTIES:
+:ID:       TC-FLT-003
+:AUTHOR:   Edna
+:RELATED_USER_STORY: <us-filter-search.org>
+:RELATED_AUTOMATION: <test-filtering-search.py>
+:TYPE:Functional
+:PRIORITY:Medium
+:END:
+
+** Test Objective
+Verify that user can search with unicode characters
+
+** Pre-conditions
+- Application is running
+- The three_special_chars_artworks_data list is loaded to the class:
+("山田太郎", "春の風景", "100×100cm", "アクリル絵具", "2024", "path.jpg"),
+("أحمد العلي", "مشهد الغروب", "٨٠×٦٠ سم", "زيت", "2024", "path.jpg"),
+("Mårten Ødegård", "Unicode Dreams", "50×70㎝", "𝕬𝖗𝖙 𝕸𝖎𝖝", "2024", "path.jpg"),
+
+** Test Steps
+1. Click into the search edit
+2. Type or paste: "山田太郎"
+
+** Expected Results
+- The table is filtered
+- Only "山田太郎" row is displayed
+
+** Notes / Edge Cases
+- -
+
+* Test Execution
+** Info:
+- Tester: 
+- Date: 
+** Expected Results Verification:
+- [ ] The table is filtered
+- [ ] Only "" row is displayed
+** Overall Result:
+- [ ] Pass
+- [ ] Fail
+- [ ] Blocked
+- Actual Result: 
+- Bugs Found / Bug ID: 
+- Notes / Observations:

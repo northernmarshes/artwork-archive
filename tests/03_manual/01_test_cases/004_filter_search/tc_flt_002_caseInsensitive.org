@@ -1,0 +1,46 @@
+* Test Case: TC-FLT-002 - Testing if filtering is case insensitive
+:PROPERTIES:
+:ID:       TC-FLT-002
+:AUTHOR:   Edna
+:RELATED_USER_STORY: <us-filter-search.org>
+:RELATED_AUTOMATION: <test-filtering-search.py>
+:TYPE:Functional
+:PRIORITY:Medium
+:END:
+
+** Test Objective
+Verify that the application allows to search case insensitive
+
+** Pre-conditions
+- Application is running
+- The three_valid_artworks list is loaded to the class:
+  ("Jane Smith", "Abstract 1", "100x100cm", "Acrylic", "2024", "sample1.jpg"),
+  ("John Doe", "Landscape", "80x60cm", "Oil", "2023", "sample2.jpg"),
+  ("Alice Brown", "Portrait", "50x70cm", "Watercolor", "2024", "sample3.jpg"),
+
+** Test Steps
+1. Click into the search edit
+2. Type "JANE SMITH"
+3. Type "jane smith"
+
+** Expected Results
+- The table is filtered
+- Only the Jane Smith row is displayed
+
+** Notes / Edge Cases
+- -
+
+* Test Execution
+** Info:
+- Tester: 
+- Date: 
+** Expected Results Verification:
+- [ ] The table is filtered
+- [ ] Only the Jane Smith row is displayed
+** Overall Result:
+- [ ] Pass
+- [ ] Fail
+- [ ] Blocked
+- Actual Result: 
+- Bugs Found / Bug ID: 
+- Notes / Observations:

@@ -2,7 +2,7 @@
 
 ### **!!! Work in progress - not ready for use!!!**
 
-### Overview
+### Functional Overview
 
 Artwork Archive is a lightweight desktop app for artists, galleries and
 collectors who need to store, organize and browse their artwork database.
