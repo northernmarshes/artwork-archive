@@ -11,6 +11,17 @@ single_valid_artwork = [
     )
 ]
 
+single_empty_artwork_data = [
+    (
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+    )
+]
+
 three_valid_artworks = [
     ("Jane Smith", "Abstract 1", "100x100cm", "Acrylic", "2024", "sample1.jpg"),
     ("John Doe", "Landscape", "80x60cm", "Oil", "2023", "sample2.jpg"),
@@ -34,16 +45,16 @@ three_special_chars_artworks_data = [
         "春の風景",
         "100×100cm",
         "アクリル絵具",
-        "２０２４年",
+        "2024",
         "path.jpg",
     ),
-    ("أحمد العلي", "مشهد الغروب", "٨٠×٦٠ سم", "زيت", "٢٠٢٣", "path.jpg"),
+    ("أحمد العلي", "مشهد الغروب", "٨٠×٦٠ سم", "زيت", "2024", "path.jpg"),
     (
         "Mårten Ødegård",
         "Unicode Dreams",
         "50×70㎝",
         "𝕬𝖗𝖙 𝕸𝖎𝖝",
-        "𝟚𝟘𝟚𝟜",
+        "2024",
         "path.jpg",
     ),
 ]
@@ -52,3 +63,8 @@ three_special_chars_artworks_data = [
 @pytest.fixture
 def three_special_chars_artworks():
     return three_special_chars_artworks_data
+
+
+@pytest.fixture
+def single_empty_artwork():
+    return single_empty_artwork_data

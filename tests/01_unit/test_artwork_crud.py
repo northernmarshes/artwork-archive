@@ -3,7 +3,6 @@ from src.archive import Archive
 from tests.fixtures.artworks.sample_data import (
     single_valid_artwork,
     three_valid_artworks,
-    single_invalid_year,
 )
 
 # ----------------------------------------
@@ -15,39 +14,59 @@ from tests.fixtures.artworks.sample_data import (
 def test_add_artwork(archive_fixture):
     """Function tests adding a new artwork"""
 
-    archive = archive_fixture
+    test_archive = archive_fixture
 
     # Collecting sample data
     artwork = single_valid_artwork[0]
     print(f"Adding {artwork}")
     author, title, size, medium, year, filename = artwork
     # Inserting data to QLineEdit
-    archive.author_line_edit.setText(author)
-    archive.title_line_edit.setText(title)
-    archive.size_line_edit.setText(size)
-    archive.medium_line_edit.setText(medium)
-    archive.year_line_edit.setText(year)
+    test_archive.author_line_edit.setText(author)
+    test_archive.title_line_edit.setText(title)
+    test_archive.size_line_edit.setText(size)
+    test_archive.medium_line_edit.setText(medium)
+    test_archive.year_line_edit.setText(year)
 
     # Counting rows before addition
-    rows_before = archive.model.rowCount()
+    rows_before = test_archive.model.rowCount()
 
     # Calling the function
-    archive.addArtwork()
+    test_archive.addArtwork()
 
     # Counting rows after addition
-    rows_after = archive.model.rowCount()
+    rows_after = test_archive.model.rowCount()
 
     # Printing data from of the added artwork
     last_row_index = rows_after - 1
     if last_row_index > 0:
         last_row_data = []
-        for col in range(archive.model.columnCount()):
-            item = archive.model.item(last_row_index, col)
+        for col in range(test_archive.model.columnCount()):
+            item = test_archive.model.item(last_row_index, col)
             last_row_data.append(item.text() if item is not None else None)
         print(f"Newly added artwork is {last_row_data}")
 
     # Asserting row count
     assert rows_after == rows_before + 1
+
+
+def test_read_artwork(archive_fixture):
+    """Function tests if user can read the data"""
+
+    # Creating an instance with three sample works
+    test_archive = archive_fixture
+
+    sampleNames = []
+    for item in three_valid_artworks:
+        sampleNames.append(item[0])
+    print(f"Names passed to the class: {sampleNames}")
+
+    readNames = []
+    for i in range(test_archive.proxy_model.rowCount()):
+        readNames.append(test_archive.model.item(i).text())
+
+    print(f"Names visible in a proxy model: {readNames}")
+
+    assert set(sampleNames) == set(readNames)
 
 
 # def test_update_artwork(archive_fixture):
@@ -58,33 +77,33 @@ def test_add_artwork(archive_fixture):
 def test_delete_artwork(archive_fixture):
     """Function tests deleting an artwork"""
 
-    archive = archive_fixture
+    test_archive = archive_fixture
 
     # Collecting sample data
     artwork = single_valid_artwork[0]
     author, title, size, medium, year, filename = artwork
 
     # Inserting data to QLineEdit
-    archive.author_line_edit.setText(author)
-    archive.title_line_edit.setText(title)
-    archive.size_line_edit.setText(size)
-    archive.medium_line_edit.setText(medium)
-    archive.year_line_edit.setText(year)
+    test_archive.author_line_edit.setText(author)
+    test_archive.title_line_edit.setText(title)
+    test_archive.size_line_edit.setText(size)
+    test_archive.medium_line_edit.setText(medium)
+    test_archive.year_line_edit.setText(year)
 
     # Counting rows before addition
-    rows_before_addition = archive.model.rowCount()
+    rows_before_addition = test_archive.model.rowCount()
 
     # Calling the function
-    archive.addArtwork()
+    test_archive.addArtwork()
 
     # Counting rows after addition
-    rows_after_addition = archive.model.rowCount()
+    rows_after_addition = test_archive.model.rowCount()
 
     # Calling the function
-    archive.deleteArtwork(0)
+    test_archive.deleteArtwork(0)
 
     # Counting rows after deletion
-    rows_after_deletion = archive.model.rowCount()
+    rows_after_deletion = test_archive.model.rowCount()
 
     assert rows_before_addition == rows_after_deletion
     assert rows_after_addition == rows_before_addition + 1

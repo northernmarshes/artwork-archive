@@ -1,0 +1,49 @@
+* Test Case: TC-ADD-006 - Add artwork with unicode data
+:PROPERTIES:
+:ID:       TC-ADD-006
+:AUTHOR:   Edna
+:RELATED_USER_STORY: <us-add-artwork.org>
+:RELATED_AUTOMATION: <test_artwork_validation.py>
+:TYPE: Functional
+:PRIORITY: Medium
+:END:
+
+** Test Objective
+Verify that the user is able to add artwork with unicode data
+
+** Pre-conditions
+- Application is running
+
+
+** Test Steps
+1. Navigate to the form section
+2. Paste the data(japanese input is not avialable)
+   - author: 山田太郎
+   - title: 春の風景
+   - size: 100x100cm
+   - medium: アクリル絵具
+   - year: 2024
+3. Do not add any pictures
+4. Click "Add Artwork"
+
+** Expected Results
+- Artwork is saved and visible in the table
+- No other rows are affected
+
+** Notes / Edge Cases
+- -
+
+* Test Execution
+** Info:
+- Tester: 
+- Date: 
+** Expected Results Verification:
+- [ ] Artwork is saved and visible in the table
+- [ ] No other rows are affected
+** Overall Result:
+- [ ] Pass
+- [ ] Fail
+- [ ] Blocked
+- Actual Result: 
+- Bugs Found / Bug ID: 
+- Notes / Observations:
