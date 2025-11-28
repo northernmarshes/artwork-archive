@@ -1,0 +1,13 @@
+* User Story: Database Export
+:US:
+** As a User
+I want to able to export database
+So that I can backup and migrate my data between devices.
+** Acceptance Criteria
+1. Database file is saved one clicked "Export data"
+2. Data is the same as in the application's table
+3. Unicode data is saved
+4. Empty database doesn't cause crash
+** Notes
+- None
+                                                

@@ -1,0 +1,51 @@
+* Test Case: TC-IMP-003 - Test Database Import While Filtering
+:PROPERTIES:
+:ID: TC-IMP-003
+:AUTHOR: Edna
+:RELATED_USER_STORY: <us-import-database.org>
+:RELATED_AUTOMATION: <test_database_operations.py>
+:TYPE: Functional
+:PRIORITY: Medium
+:END:
+
+** Test Objective
+Verify that user is able to import previously saved database while filtering
+
+** Pre-conditions
+- Application is running
+- A string is inputed into filtering bar
+  String: "Jane"
+                        
+
+** Test Steps
+1. Click "File"
+2. Click "Import Database"
+3. Click "Okay" on a pop up windwow
+
+** Expected Results
+- Database is imported
+- All data is displayed properly
+- Unicode data is migrated properly
+- Folder with image thummbnails is copied imported
+- Images are displayed properly
+
+** Notes / Edge Cases
+- None
+
+* Test Execution
+** Info:
+- Tester: 
+- Date: 
+** Expected Results Verification:
+- [ ] Database is imported
+- [ ] All data is displayed properlyq
+- [ ] Unicode data is migrated properly
+- [ ] Folder with image thummbnails is copied imported
+- [ ] Images are displayed properly
+** Overall Result:
+- [ ] Pass
+- [ ] Fail
+- [ ] Blocked
+- Actual Result: 
+- Bugs Found / Bug ID: 
+- Notes / Observations:

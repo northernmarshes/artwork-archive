@@ -4,9 +4,10 @@
 I want to be able to undo and redo my changes in the current session,
 So that I don't lose data when I make a mistake.
 ** Acceptance Criteria
-  1. User is able to undo 5 last changes by pushing "Undo" or CTRL+Z
-  2. User is able to redo the changes by pressing "Redo" or CTRL+R
-  3. Undo is not destructive to other elements
-  4. Redo is not destructive to other elements
+1. User is able to undo 5 last changes by pushing "Undo" or CTRL+Z
+2. User is able to redo the changes by pressing "Redo" or CTRL+R
+3. Undo is not destructive to other elements
+4. Redo is not destructive to other elements
 ** Notes
+- None
           

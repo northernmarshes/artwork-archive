@@ -1,0 +1,13 @@
+* User Story: Database Import
+:US:
+** As a user
+I want to able to import a database
+So that I can load my backup and migrate data between devices.
+** Acceptance Criteria
+1. Data is properly loaded once clicked "Import Database"
+2. Warning about discarding an existing database is displayed
+3. Unicode data is properly loaded
+4. Data displayed in the table is the same as in the database
+** Notes
+- None
+

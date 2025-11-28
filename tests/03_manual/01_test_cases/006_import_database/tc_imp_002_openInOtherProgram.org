@@ -1,0 +1,46 @@
+* Test Case: TC-IMP-003 - Test Database Import
+:PROPERTIES:
+:ID: TC-IMP-003
+:AUTHOR: Edna
+:RELATED_USER_STORY: <us-import-database.org>
+:RELATED_AUTOMATION: <test_database_operations.py>
+:TYPE: Functional
+:PRIORITY: Critical
+:END:
+
+** Test Objective
+Verify that user is UNABLE to import a database that is already open in different program
+
+** Pre-conditions
+- Application is running
+- Database in open in another program
+
+
+** Test Steps
+1. Click "File"
+2. Click "Import Databaseq"
+3. Choose the database that is open in another program
+
+** Expected Results
+- Database is not imported
+- Warning message "Database is already open" is displayed
+- Database contents are not affected nor corrupted
+
+** Notes / Edge Cases
+- Any additional notes or edge cases to consider
+
+* Test Execution
+** Info:
+- Tester: 
+- Date: 
+** Expected Results Verification:
+- [ ] Database is not imported
+- [ ] Warning message "Database is already open" is displayed
+Database contents are not affected nor corrupted
+** Overall Result:
+- [ ] Pass
+- [ ] Fail
+- [ ] Blocked
+- Actual Result: 
+- Bugs Found / Bug ID: 
+- Notes / Observations:

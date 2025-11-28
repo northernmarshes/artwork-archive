@@ -4,11 +4,12 @@
 I want to delete any artwork from the database
 So that I can get rid of unwanted data
 ** Acceptance Criteria
-  1. User can delete any row by pressing DEL button
-  2. User can delete any row by clicking "Remove an artwork" in the manu
-  3. Deleting a row is not destructive to other elements
-  4. Deleting shows a confirmation message
-  5. Artwork doesn't reappear after rebooting the app
-  6. Picture thumbnail is deleted from the images folder
-  7. Filtered view doesn't change which row is selected 
+1. User can delete any row by pressing DEL button
+2. User can delete any row by clicking "Remove an artwork" in the manu
+3. Deleting a row is not destructive to other elements
+4. Deleting shows a confirmation message
+5. Artwork doesn't reappear after rebooting the app
+6. Picture thumbnail is deleted from the images folder
+7. Filtered view doesn't change which row is selected 
 ** Notes
+- None

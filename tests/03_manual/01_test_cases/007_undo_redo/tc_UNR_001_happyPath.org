@@ -1,0 +1,52 @@
+* Test Case: TC-UNR-001 - Test Undo/Redo Happy Path
+:PROPERTIES:
+:ID: TC-UNR-001
+:AUTHOR: Edna
+:RELATED_USER_STORY: <us-undo-redo.org>
+:RELATED_AUTOMATION: <???>
+:TYPE: Functional
+:PRIORITY: High
+:END:
+
+** Test Objective
+Verify that the user can UNDO and REDO an operation
+
+** Pre-conditions
+- Application is running
+- The three_valid_artworks list is loaded to the class:
+  ("Jane Smith", "Abstract 1", "100x100cm", "Acrylic", "2024", "sample1.jpg"),
+  ("John Doe", "Landscape", "80x60cm", "Oil", "2023", "sample2.jpg"),
+  ("Alice Brown", "Portrait", "50x70cm", "Watercolor", "2024", "sample3.jpg"),
+  
+** Test Steps
+1. Click into author cell of the first row
+2. Change the content to "James White"
+3. Press <Enter>
+4. Click "Edit"
+5. Click "Undo"
+6. Click "Edit"
+7. Click "Redo"
+
+** Expected Results
+- The changes to the cell are undone after clicking Undo
+- The changes to the cell are redone after clicking Redo
+- No other cells are affected
+
+** Notes / Edge Cases
+- None
+
+* Test Execution
+** Info:
+- Tester: 
+- Date: 
+** Expected Results Verification:
+- [ ] The changes to the cell are undone after clicking Undo
+- [ ] The changes to the cell are redone after clicking Redo
+No other cells are affected
+** Overall Result:
+- [ ] Pass
+- [ ] Fail
+- [ ] Blocked
+- Actual Result: 
+- Bugs Found / Bug ID: 
+- Notes / Observations:

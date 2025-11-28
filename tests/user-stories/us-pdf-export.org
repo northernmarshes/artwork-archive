@@ -1,0 +1,13 @@
+* User Story: PDF Export
+:US:
+** As a user
+I want to be able to export a pdf file with my database
+So that I can show my works/collection to others.
+** Acceptance Criteria
+1. Pdf file is saved once clicked "Export PDF"
+2. Data in the table is the same as data in the table
+3. Unicode is handled properly
+4. Empty database couses warning and doesn't print
+** Notes
+- None
+

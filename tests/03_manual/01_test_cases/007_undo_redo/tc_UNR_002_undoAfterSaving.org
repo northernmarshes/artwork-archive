@@ -1,0 +1,60 @@
+* Test Case: TC-UNR-002 - Test Undo/Redo After Saving
+:PROPERTIES:
+:ID: TC-UNR-002
+:AUTHOR: Edna
+:RELATED_USER_STORY: <us-undo-redo.org>
+:RELATED_AUTOMATION: <???>
+:TYPE: Functional
+:PRIORITY: High
+:END:
+
+** Test Objective
+Verify that the user can UNDO and REDO an operation after saving database
+
+** Pre-conditions
+- Application is running
+- The three_valid_artworks list is loaded to the class:
+  ("Jane Smith", "Abstract 1", "100x100cm", "Acrylic", "2024", "sample1.jpg"),
+  ("John Doe", "Landscape", "80x60cm", "Oil", "2023", "sample2.jpg"),
+  ("Alice Brown", "Portrait", "50x70cm", "Watercolor", "2024", "sample3.jpg"),
+  
+** Test Steps
+1. Click into author cell of the first row
+2. Navigate to the edit section
+3. Fill the section with valid data:
+   - author: Emily Turner
+   - title: Silent Horizon
+   - size: 90x90cm
+   - medium: Acrylic on Canvas
+4. Click "Add Artwork"
+5. Click "File"
+6. Click "Save Database"
+7. Click "Undo"
+8. Click "Edit"
+9. Click "Redo"
+
+** Expected Results
+- Undo and Redo are not blocked by saving the database
+- The changes to the cell are undone after clicking Undo
+- The changes to the cell are redone after clicking Redo
+- No other cells are affected
+
+** Notes / Edge Cases
+- None
+
+* Test Execution
+** Info:
+- Tester: 
+- Date: 
+** Expected Results Verification:
+- [ ] Undo and Redo are not blocked by saving the database
+- [ ] The changes to the cell are undone after clicking Undo
+- [ ] The changes to the cell are redone after clicking Redo
+- [ ] No other cells are affected
+** Overall Result:
+- [ ] Pass
+- [ ] Fail
+- [ ] Blocked
+- Actual Result: 
+- Bugs Found / Bug ID: 
+- Notes / Observations:
