@@ -49,7 +49,7 @@ Acceptance criteria I created for the application
 
 ## Running Tests
 
-### requirements
+### Requirements:
 
 ```bash
 python -m venv venv
@@ -58,7 +58,7 @@ venv\Scripts\activate     # Windows
 pip install -r requirements.txt
 ```
 
-### Run
+### Run:
 
 ```bash
 # Run all automated tests
