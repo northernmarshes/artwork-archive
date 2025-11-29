@@ -1,0 +1,42 @@
+* Test Case: TC-PDF-003 - Test PDF Export With Empty Table/Database
+:PROPERTIES:
+:ID: TC-PDF-003
+:AUTHOR: Edna
+:RELATED_USER_STORY: <us-pdf-export.org>
+:RELATED_AUTOMATION: <???>
+:TYPE: Functional
+:PRIORITY: Medium
+:END:
+
+** Test Objective
+Verify that user can't export a PDF file with an empty database/table
+
+** Pre-conditions
+- Application is running
+- Database and table are empty
+
+** Test Steps
+1. Click "File"
+2. Click "Export PDF"
+
+** Expected Results
+- PDF file is not chosen
+- Warning message appears
+
+** Notes / Edge Cases
+- Any additional notes or edge cases to consider
+
+* Test Execution
+** Info:
+- Tester: 
+- Date: 
+** Expected Results Verification:
+- [ ] PDF file is not chosen
+- [ ] Warning message appears
+** Overall Result:
+- [ ] Pass
+- [ ] Fail
+- [ ] Blocked
+- Actual Result: 
+- Bugs Found / Bug ID: 
+- Notes / Observations:

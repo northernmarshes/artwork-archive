@@ -1,0 +1,53 @@
+* Test Case: TC-PDF-003 - Test PDF Export With No Pictures
+:PROPERTIES:
+:ID: TC-PDF-003
+:AUTHOR: Edna
+:RELATED_USER_STORY: <us-pdf-export.org>
+:RELATED_AUTOMATION: <???>
+:TYPE: Functional
+:PRIORITY: Medium
+:END:
+
+** Test Objective
+Verify that user can export a PDF file with no pictures
+
+** Pre-conditions
+- Application is running
+- The three_valid_artworks list is loaded to the class:
+  ("Jane Smith", "Abstract 1", "100x100cm", "Acrylic", "2024", "sample1.jpg"),
+  ("John Doe", "Landscape", "80x60cm", "Oil", "2023", "sample2.jpg"),
+  ("Alice Brown", "Portrait", "50x70cm", "Watercolor", "2024", "sample3.jpg"),
+- Thumbnails are NOT loaded and are NOT in the table
+
+** Test Steps
+1. Click "File"
+2. Click "Export PDF"
+3. Navigate to the chosen folder
+
+** Expected Results
+- PDF file is saved in the chosen directory
+- Data in the file is the same as in the table
+- Unicode data is printed properly
+- Thumbnails are missing displayed 
+- Data in the table is not affected in any way
+
+** Notes / Edge Cases
+- Any additional notes or edge cases to consider
+
+* Test Execution
+** Info:
+- Tester: 
+- Date: 
+** Expected Results Verification:
+- [ ] PDF file is saved in the chosen directory
+- [ ] Data in the file is the same as in the table
+- [ ] Unicode data is printed properly
+- [ ] Thumbnails are missing
+- [ ] Data in the table is not affected in any way
+** Overall Result:
+- [ ] Pass
+- [ ] Fail
+- [ ] Blocked
+- Actual Result: 
+- Bugs Found / Bug ID: 
+- Notes / Observations:

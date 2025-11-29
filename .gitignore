@@ -28,6 +28,9 @@ Thumbs.db
 *.sqlite3
 *.sqlite
 
+# --- Coverage Data ---
+htmlcov/
+
 # --- Build & dist ---
 build/
 dist/

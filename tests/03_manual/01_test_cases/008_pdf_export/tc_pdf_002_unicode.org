@@ -1,0 +1,53 @@
+* Test Case: TC-PDF-002 - Test PDF Export With Unicode Data
+:PROPERTIES:
+:ID: TC-PDF-002
+:AUTHOR: Edna
+:RELATED_USER_STORY: <us-pdf-export.org>
+:RELATED_AUTOMATION: <???>
+:TYPE: Functional
+:PRIORITY: Medium
+:END:
+
+** Test Objective
+Verify that user can export a PDF file with databese containging unicode
+
+** Pre-conditions
+- Application is running
+- The three_special_chars_artworks_data list is loaded to the class:
+  ("山田太郎", "春の風景", "100×100cm", "アクリル絵具", "2024", "path.jpg"),
+  ("أحمد العلي", "مشهد الغروب", "٨٠×٦٠ سم", "زيت", "2024", "path.jpg"),
+  ("Mårten Ødegård", "Unicode Dreams", "50×70㎝", "𝕬𝖗𝖙 𝕸𝖎𝖝", "2024", "path.jpg"),
+- Thumbnails are loaded and displayed properly in the table
+
+** Test Steps
+1. Click "File"
+2. Click "Export PDF"
+3. Navigate to the chosen folder
+
+** Expected Results
+- PDF file is saved in the chosen directory
+- Data in the file is the same as in the table
+- Unicode data is printed properly
+- Thumbnails are displayed properly
+- Data in the table is not affected in any way
+
+** Notes / Edge Cases
+- None
+
+* Test Execution
+** Info:
+- Tester: 
+- Date: 
+** Expected Results Verification:
+- [ ] PDF file is saved in the chosen directory
+- [ ] Data in the file is the same as in the table
+- [ ] Unicode data is printed properly
+- [ ] Thumbnails are displayed properly
+- [ ] Data in the table is not affected in any way
+** Overall Result:
+- [ ] Pass
+- [ ] Fail
+- [ ] Blocked
+- Actual Result: 
+- Bugs Found / Bug ID: 
+- Notes / Observations:

@@ -1,4 +1,5 @@
 import pytest
+from PIL import Image
 
 single_valid_artwork = [
     (
@@ -68,3 +69,11 @@ def three_special_chars_artworks():
 @pytest.fixture
 def single_empty_artwork():
     return single_empty_artwork_data
+
+
+@pytest.fixture
+def create_test_image(tmp_path, name="test_img.jpg"):
+    test_img = Image.new("RGB", (100, 300), color="blue")
+    img_path = tmp_path / name
+    test_img.save(img_path)
+    return img_path
