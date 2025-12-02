@@ -1,0 +1,17 @@
+* Test Execution – Add Feature Test Run
+
+Run ID: TE-20251202-001
+Date: 2025-12-02
+Tester: Edna
+Build: v0.7
+Environment: Linux
+Scope: Feature
+
+| TC_ID                       | AREA | STATUS  | BUG_ID      | NOTES                                        |
+| tc_add_001_happyPath        | ADD  | PASS    | -           | No message window yet                        |
+| tc_add_002_emptyTitle       | ADD  | FAIL    | BUG_ADD_001 | No Toast                                     |
+| tc_add_003_emptyFields      | ADD  | FAIL    | BUG_ADD_002 | No toast                                     |
+| tc_add_004_invalidYear      | ADD  | PASS    | -           | Wrong input not possible - implement toast   |
+| tc_add_005_unsupportedImage | ADD  | BLOCKED | -           | Dialog prevents choosing unsupported formats |
+| tc_add_005_unicodeData      | ADD  | PASSED  | -           | When copied with empty space displays "..."  |
+|                             |      |         |             |                                              |

@@ -28,8 +28,12 @@ Thumbs.db
 *.sqlite3
 *.sqlite
 
+# --- Fixtures ---
+/tests/fixtures/images/
+
 # --- Coverage Data ---
 htmlcov/
+.coverage
 
 # --- Build & dist ---
 build/
