@@ -1,0 +1,45 @@
+* Title / Summary: Cell Delete Blocked                                       
+:PROPERTIES:
+:Id: BUG_EDT_001
+:Priority:High:
+:Status: OPEN
+:Environment: Linux
+:Version: v0.7
+:Reporter: Edna
+:Assignee: Edna
+:Date: <2025-12-02 wto>
+:END:
+
+** Metadata
+- Id: BUG_EDT_001
+- Priority:High:
+- Status: OPEN
+- Environment: Linux
+- Version: v0.7
+- Reporter: Edna
+- Assignee: Edna
+- Date: <2025-12-02 wto>
+
+** Steps to Reproduce
+   1. Click into a cell in a random row
+   2. Delete the current value
+   3. Type new value of the same type
+   4. Push <return> key
+
+** Expected Result
+   - New value stays in the cell
+   - Toast notification appears: "The cell has bleen updated"
+   - No other rows are affected
+
+** Actual Result
+   - "All fields must be filled" message in terminal
+   - Application freezes and database disconnects
+
+** Attachments / Screenshots
+   - -
+
+** Notes / Observations
+   - All fields filled prevents changes to cells
+
+
+

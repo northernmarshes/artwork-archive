@@ -1,0 +1,37 @@
+* Test Case: TC-EDT-002 - Test Artwork Editing with Invalid Type
+:PROPERTIES:
+:ID: TC-EDT-003
+:AUTHOR: Edna
+:RELATED_USER_STORY: <us-edit-artwork.org>
+:TYPE: Functional
+:PRIORITY: Medium
+:END:
+
+** Test Objective
+Verify that the user is able to delete cell data other then the title
+** Pre-conditions
+- Application is running
+** Test Steps
+1. Open the application
+2. Click into a cell other then title in a random row
+3. Delete the current value
+5. Push <return> key
+   
+** Expected Results
+- The cell is cleared
+** Notes / Edge Cases
+- -
+
+* Test Execution
+** Info:
+- Tester: 
+- Date: 
+** Expected Results Verification:
+- [ ] The cell is cleared
+** Overall Result:
+- [ ] Pass
+- [ ] Fail
+- [ ] Blocked
+- Actual Result: 
+- Bugs Found / Bug ID: 
+- Notes / Observations:
