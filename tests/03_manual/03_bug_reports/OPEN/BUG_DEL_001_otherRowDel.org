@@ -1,0 +1,29 @@
+* Title / Summary: Other Row Deleted                                       
+:PROPERTIES:
+:BugId: BUG-DEL-001
+:TestId: TC-DEL-001
+:Priority: Critical
+:Status: OPEN
+:Environment: Linux
+:Version: v0.7
+:Reporter: Edna
+:Assignee: Edna
+:Date: <2025-12-03 śro> 
+:END:
+
+** Steps to Reproduce
+   1. Click on an existing row
+   2. Pres <delete>
+
+** Expected Result
+   - The selected row is deleted
+
+** Actual Result
+   - Other row is deleted
+
+** Attachments / Screenshots
+   - -
+
+** Notes / Observations
+   - Check how proxy model tracks selection
+

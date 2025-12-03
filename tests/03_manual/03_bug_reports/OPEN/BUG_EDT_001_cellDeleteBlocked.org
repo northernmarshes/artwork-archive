@@ -1,7 +1,8 @@
 * Title / Summary: Cell Delete Blocked                                       
 :PROPERTIES:
-:Id: BUG_EDT_001
-:Priority:High:
+:BugId: BUG-EDT-001
+:TestId: TC-EDT-001, 002
+:Priority: High
 :Status: OPEN
 :Environment: Linux
 :Version: v0.7
@@ -11,7 +12,8 @@
 :END:
 
 ** Metadata
-- Id: BUG_EDT_001
+- BugId: BUG-EDT-001
+- TestId: TC-EDT-001, 002
 - Priority:High:
 - Status: OPEN
 - Environment: Linux

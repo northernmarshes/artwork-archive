@@ -1,0 +1,32 @@
+* Title / Summary: Last Row Deleted                                       
+:PROPERTIES:
+:BugId: BUG-DEL-002
+:TestId: TC-DEL-002
+:Priority: High
+:Status: OPEN
+:Environment: Linux
+:Version: v0.7
+:Reporter: Edna
+:Assignee: Edna
+:Date: <2025-12-03 śro>
+:END:
+
+** Steps to Reproduce
+   1. Open the app
+   2. Click on the table background
+   3. Make sure no row is selected
+   4. Press <delete>
+
+** Expected Result
+   - Nothing happens
+   - Table is not changed
+
+** Actual Result
+   - Last row is deleted
+
+** Attachments / Screenshots
+   - None
+
+** Notes / Observations
+   - Check how proxy model targets rows
+

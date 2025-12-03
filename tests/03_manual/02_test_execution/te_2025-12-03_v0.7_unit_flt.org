@@ -1,0 +1,25 @@
+* Test Execution – Filter Unit Test Run
+
+:PROPERTIES:
+:ID: TE-20251203-002
+:Date: <2025-12-03 śro>
+:Tester: Edna
+:Build: v0.7
+:Environment: Linux
+:Scope: Feature
+:END:
+
+** Metadata:
+- ID: TE-20251203-002
+- Date: <2025-12-03 śro>
+- Tester: Edna
+- Build: v0.7
+- Environment: Linux
+- Scope: Feature
+  
+** Execution
+| TC_ID                      | AREA | STATUS | BUG_ID | NOTES |
+| tc_flt_001_happyPath       | FLT  | PASS   | NONE   | NONE  |
+| tc_flt_002_caseInsensitive | FLT  | PASS   | NONE   | NONE  |
+| tc_flt_003_unicode         | FLT  | PASS   | NONE   | NONE  |
+

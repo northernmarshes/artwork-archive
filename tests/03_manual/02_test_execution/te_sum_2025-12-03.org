@@ -1,0 +1,48 @@
+* Test Execution – Summary
+
+:PROPERTIES:
+:ID: TE-20251203-S01
+:Date: <2025-12-03 śro>
+:Tester: Edna
+:Build: v0.7
+:Environment: Linux
+:Scope: Integration
+:END:
+
+** Metadata:
+- ID: 20251203-S01
+- Date: 
+- Tester: Edna
+- Build: v0.7
+- Environment: Linux
+- Scope: Integration
+
+** Execution
+#+TBLNAME: Execution
+| TC_ID                       | AREA | STATUS  | BUG_ID      | NOTES                                        |
+|-----------------------------+------+---------+-------------+----------------------------------------------|
+| tc_add_001_happyPath        | ADD  | PASS    | NONE        | No message window yet                        |
+| tc_add_002_emptyTitle       | ADD  | FAIL    | BUG_ADD_001 | No Toast                                     |
+| tc_add_003_emptyFields      | ADD  | FAIL    | BUG_ADD_002 | No toast                                     |
+| tc_add_004_invalidYear      | ADD  | PASS    | NONE        | Wrong input not possible - implement toast   |
+| tc_add_005_unsupportedImage | ADD  | BLOCK   | NONE        | Dialog prevents choosing unsupported formats |
+| tc_add_005_unicodeData      | ADD  | PASS    | NONE        | When copied with empty space displays "..."  |
+| tc_edt_001_happyPath        | EDIT | FAIL    | BUG_EDT_001 | Edit blocked                                 |
+| tc_edt_002_invalidType      | EDIT | FAIL    | BUG_EDT_001 | Edit blocked                                 |
+| tc_edt_003_deleteCell       | EDIT | FAIL    | BUG_EDT_001 | Edit blocked                                 |
+| tc_del_001_happyPath        | DEL  | FAIL    | BUG_DEL_001 | Other the selected row is deleted            |
+| tc_del_002_noRowSelected    | DEL  | FAIL    | BUG_DEL_002 | When clicked into table last row deleted     |
+| tc_flt_001_happyPath        | FLT  | PASS    | NONE        | NONE                                         |
+| tc_flt_002_caseInsensitive  | FLT  | PASS    | NONE        | NONE                                         |
+| tc_flt_003_unicode          | FLT  | PASS    | NONE        | NONE                                         |
+** Summary
+
+| Metric          | Value |
+|-----------------+-------|
+| Total tests     |    14 |
+| PASS            |     6 |
+| FAIL            |     7 |
+| BLOCK           |     1 |
+| Buggy tests     |     7 |
+| Individual bugs |     5 |
+| Pass rate [%]   |   43% |

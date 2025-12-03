@@ -15,8 +15,9 @@ Verify that the user is able to delete an artwork from the table
 ** Test Steps
 1. Click on an existing row
 2. Press <delete>
-3. Type the title in the search bar
-4. Check if the row doesn't reappear
+3. Check if the row is gone
+4. Type the title in the search bar
+5. Check if the row doesn't reappear
 ** Expected Results
 - The selected row is imidietely deleted
 - Other rows are not affected

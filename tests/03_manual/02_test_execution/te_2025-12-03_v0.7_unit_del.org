@@ -1,0 +1,22 @@
+* Test Execution – Add Unit Test Run
+:PROPERTIES:
+:ID: TE-20251203-001
+:Date: <2025-12-03 śro>
+:Tester: Edna
+:Build: v.0.7
+:Environment: Linux
+:Scope: Feature
+:END:
+
+** Metadata:
+- ID: 20251203-001
+- Date: <2025-12-03 śro>
+- Tester: Edna
+- Build: v.0.7
+- Environment: Linux
+- Scope: Feature
+
+** Execution
+| TC_ID                    | AREA | STATUS | BUG_ID      | NOTES                                    |
+| tc_del_001_happyPath     | DEL  | Failed | BUG_DEL_001 | Other the selected row is deleted        |
+| tc_del_002_noRowSelected | DEL  | Failed | BUG_DEL_002 | When clicked into table last row deleted |
