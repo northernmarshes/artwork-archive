@@ -30,19 +30,19 @@
 
 ** Expected Result
    - Artwork is NOT saved
-   - Toast appears: "The title is required"
+   - Statusbar changes to: "Title is required"
    - Table remains unchanged
 
 ** Actual Result
    - Artwork is NOT saved
    - Incorrect error toast: "All fields must be filled"
    - Message only visible in terminal
-   - No toast notification shown
+   - No status bar notification
 
 ** Attachments / Screenshots
-   - -
+   - None
 
 ** Notes / Observations
-   - Implement toast notification for error messages to provide feedback
+   - Implement status bar for error messages to provide feedback
    - Only title input should be obligatory
 

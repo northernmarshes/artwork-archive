@@ -1,6 +1,6 @@
 import sqlite3
 from pathlib import Path
-from PySide6.QtCore import QSortFilterProxyModel, Qt
+from PySide6.QtCore import QSortFilterProxyModel, Qt, Signal
 from PySide6.QtGui import (
     # QAction,
     # QImage,
@@ -24,13 +24,17 @@ from PySide6.QtWidgets import (
     QTableView,
     QVBoxLayout,
     QWidget,
+    QStatusBar,
 )
 from src.database.sample_data import three_valid_artworks
 
 
 class Archive(QWidget):
+    statusMessage = Signal(str)
+
     def __init__(self, datapath=None):
         super().__init__()
+
         self.setWindowTitle("artwork-archive")
         self.setGeometry(100, 100, 500, 100)
 
@@ -45,6 +49,7 @@ class Archive(QWidget):
         if self.datapath.exists():
             self.con = sqlite3.connect(self.datapath)
             self.cur = self.con.cursor()
+            self.statusMessage.emit("Connected to database!")
             print("Database exists - connected to database")
         else:
             self.con = sqlite3.connect(self.datapath)
@@ -52,6 +57,7 @@ class Archive(QWidget):
             self.cur.execute(
                 "CREATE TABLE ARTWORKS(author, title, size, medium, year, thumbnail)"
             )
+            self.statusMessage.emit("Created a new database!")
             print("Created a new database")
 
             data = three_valid_artworks
@@ -176,6 +182,8 @@ class Archive(QWidget):
         self.filename_edit = QLineEdit()
 
         # Bottom Buttons
+        button_clearInput = QPushButton("Clear Input")
+        button_clearInput.clicked.connect(self.clearInput)
         button_update_data = QPushButton("Remove artwork")
         button_update_data.clicked.connect(self.deleteArtwork)
         button_addArtwork = QPushButton("Add an artwork")
@@ -218,6 +226,7 @@ class Archive(QWidget):
 
         # Layout - Buttons
         h_layout07 = QHBoxLayout()
+        h_layout07.addWidget(button_clearInput)
         h_layout07.addWidget(button_update_data)
         h_layout07.addWidget(button_addArtwork)
 
@@ -272,18 +281,17 @@ class Archive(QWidget):
 
         # Checking if title field is filled
         if not self.title_line_edit.text():
-            raise ValueError("All fields must be filled")
+            self.statusMessage.emit("Title is required")
+            self.con.close()
+            raise ValueError("Title is required")
 
         # Checking if year is an integer
         if not self.year_line_edit.hasAcceptableInput():
+            self.statusMessage.emit("Year must be a number")
+            self.con.close()
             raise ValueError("Invalid year value")
 
         self.con.commit()
-
-        # Adding new row without updating
-
-        # row_items = [QStandardItem(str(item)) for item in self.new_artwork]
-        # self.model.appendRow(row_items)
 
         row_items = []
         self.thumbnail_column = self.headers.index("thumbnail")
@@ -302,9 +310,7 @@ class Archive(QWidget):
             else:
                 row_items.append(QStandardItem(str(item_value)))
         self.model.appendRow(row_items)
-
-        # Scrolling to bottom of the list
-        # self.table_view.scrollToBottom()
+        self.con.close()
 
         self.author_line_edit.clear()
         self.title_line_edit.clear()
@@ -313,20 +319,31 @@ class Archive(QWidget):
         self.year_line_edit.clear()
         self.filename_edit.clear()
 
-        print("Artwork added successfully")
+        print("Artwork added!")
+        self.statusMessage.emit("Artwork added!")
 
-    def deleteArtwork(self, row: int = None):
+    def clearInput(self):
+        self.author_line_edit.clear()
+        self.title_line_edit.clear()
+        self.size_line_edit.clear()
+        self.medium_line_edit.clear()
+        self.year_line_edit.clear()
+        self.filename_edit.clear()
+        self.statusMessage.emit("Input Cleared")
+
+    def deleteArtwork(self):
         """A method that deletes an artwork"""
         self.con = sqlite3.connect(self.datapath)
         self.cur = self.con.cursor()
-        if row is None:
-            indexes = self.table_view.selectionModel().selectedRows()
-            index = indexes[0]
-            source_index = self.proxy_model.mapToSource(index)
-            row = source_index.row()
+        indexes = self.table_view.selectionModel().selectedRows()
+        index = indexes[0]
+        source_index = self.proxy_model.mapToSource(index)
+        row = source_index.row()
         self.model.removeRow(row)
+        self.con.close()
+
         print("Artwork deleted successfully")
-        self.table_view.scrollToBottom()
+        self.statusMessage.emit("Artwork deleted")
 
     def saveArchive(self):
         """A method to save changes to database"""
@@ -347,6 +364,7 @@ class Archive(QWidget):
             )
         con.commit()
         con.close()
+        self.statusMessage.emit("Database saved!")
         print("Updated")
 
     def openFileDialog(self):
@@ -362,9 +380,12 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
 
+        self.statusbar = QStatusBar()
         self.Widget = Archive()
         self.setCentralWidget(self.Widget)
+        self.Widget.statusMessage.connect(self.statusbar.showMessage)
         self.menu()
+        self.setStatusBar(self.statusbar)
 
     def menu(self):
         menubar = self.menuBar()
@@ -377,7 +398,7 @@ class MainWindow(QMainWindow):
         exitAction.triggered.connect(self.Widget.saveArchive)
         exitAction.triggered.connect(self.close)
         editMenu = menubar.addMenu("Edit")
-        addRow = editMenu.addAction("Add an Artwork", "Return")
+        addRow = editMenu.addAction("Add an Artwork", "CTRL+Return")
         addRow.triggered.connect(self.Widget.addArtwork)
         deleteRow = editMenu.addAction("Delete Row", "DEL")
         deleteRow.triggered.connect(self.Widget.deleteArtwork)

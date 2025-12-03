@@ -13,7 +13,7 @@
 
 ** Steps to Reproduce
    1. Click on an existing row
-   2. Pres <delete>
+   2. Press <delete>
 
 ** Expected Result
    - The selected row is deleted

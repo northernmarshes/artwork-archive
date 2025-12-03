@@ -32,3 +32,11 @@
         background-color: gray;
         font-size: 16px;
     }
+
+    QStatusBar {
+        color: white;
+        background-color: gray;
+        font-size: 16px;
+        padding: 10px;
+
+    }

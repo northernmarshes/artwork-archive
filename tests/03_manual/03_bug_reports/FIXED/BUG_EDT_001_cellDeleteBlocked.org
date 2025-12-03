@@ -30,7 +30,6 @@
 
 ** Expected Result
    - New value stays in the cell
-   - Toast notification appears: "The cell has bleen updated"
    - No other rows are affected
 
 ** Actual Result
